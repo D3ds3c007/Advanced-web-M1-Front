@@ -105,6 +105,9 @@
           <label class="field">
             <span>Price</span>
             <input type="number" formControlName="price" [disabled]="submitting" />
+            <small class="field-warning">
+              Set a price that already includes the admin-defined commission to avoid revenue loss.
+            </small>
           </label>
 
           <label class="field">
