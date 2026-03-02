@@ -21,16 +21,6 @@
     ></app-product-card>
   </div>
 
-  <h3 class="section-title">List (table)</h3>
-  <app-products-table
-    [products]="vm.products"
-    [disabledIds]="busyProductIds"
-    (view)="openDetails($event)"
-    (edit)="openEdit($event)"
-    (remove)="onDelete($event)"
-    (toggle)="onToggle($event)"
-  ></app-products-table>
-
   <button class="fab" type="button" (click)="openCreate()" title="Add">
     +
   </button>
