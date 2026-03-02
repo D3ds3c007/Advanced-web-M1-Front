@@ -1,0 +1,91 @@
+<section class="history">
+  <div class="header">
+    <h2>History</h2>
+
+    <div class="controls">
+      <input
+        class="search"
+        type="search"
+        placeholder="Search (order #, name, phone)..."
+        [(ngModel)]="search"
+      />
+
+      <select class="select" [(ngModel)]="statusFilter">
+        <option value="ALL">All</option>
+        <option value="PAID">Paid</option>
+        <option value="PENDING">Pending</option>
+        <option value="CANCELLED">Cancelled</option>
+      </select>
+
+      <button class="btn" type="button" (click)="clearFilters()">Reset</button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="filteredOrders() as rows">
+    <p class="empty" *ngIf="rows.length === 0">No orders found.</p>
+
+    <div class="tableWrap" *ngIf="rows.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Payment</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th style="width: 140px;"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let o of rows; trackBy: trackById">
+            <tr>
+              <td class="mono">{{ o.orderNumber }}</td>
+              <td>{{ o.createdAt | date:'medium' }}</td>
+              <td>{{ o.customerName }}</td>
+              <td>{{ o.paymentMethod }}</td>
+              <td class="right">{{ o.total | currency: currencyCode:'symbol':'1.2-2' }}</td>
+              <td><span [class]="badgeClass(o.status)">{{ o.status }}</span></td>
+              <td class="right">
+                <button class="btn" type="button" (click)="toggleDetails(o.id)">
+                  {{ expandedId === o.id ? 'Hide' : 'Details' }}
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="expandedId === o.id" class="detailsRow">
+              <td colspan="7">
+                <div class="details">
+                  <div class="block">
+                    <div class="blockTitle">Customer</div>
+                    <div><strong>Name:</strong> {{ o.customerName }}</div>
+                    <div><strong>Phone:</strong> {{ o.phone }}</div>
+                    <div><strong>Address:</strong> {{ o.address }}</div>
+                    <div *ngIf="o.note"><strong>Note:</strong> {{ o.note }}</div>
+                  </div>
+
+                  <div class="block">
+                    <div class="blockTitle">Payment</div>
+                    <div><strong>Method:</strong> {{ o.paymentMethod }}</div>
+                    <div class="hint" *ngIf="o.paymentMethod === 'MOBILE_MONEY'">
+                      (mock) Mobile Money details can be added if needed
+                    </div>
+                  </div>
+
+                  <div class="block">
+                    <div class="blockTitle">Status</div>
+                    <div><strong>Status:</strong> {{ o.status }}</div>
+                    <div class="hint">
+                      Date: {{ o.createdAt | date:'short' }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</section>

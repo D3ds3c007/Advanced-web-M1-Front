@@ -1,0 +1,99 @@
+<aside class="sidebar" [class.is-collapsed]="collapsed">
+  <div class="card">
+    <div class="top">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="title" *ngIf="!collapsed">{{ brand }}</div>
+      </div>
+
+      <div class="search" *ngIf="!collapsed && (hasCustomNav || (selectedShop$ | async))">
+        <span class="mi">search</span>
+        <input [(ngModel)]="search" placeholder="Search" />
+      </div>
+
+      <ng-container *ngIf="hasCustomNav; else ownerSidebar">
+        <nav class="nav">
+          <ng-container *ngFor="let item of filteredNav">
+            <a
+              *ngIf="isLink(item)"
+              class="item"
+              [routerLink]="item.route"
+              routerLinkActive="ACTIVE"
+            >
+              <span class="mi">{{ item.icon }}</span>
+              <span class="label" *ngIf="!collapsed">{{ item.label }}</span>
+            </a>
+            <div *ngIf="isDivider(item) && !collapsed" class="nav-divider">
+              {{ item.label || '' }}
+            </div>
+          </ng-container>
+        </nav>
+      </ng-container>
+
+      <ng-template #ownerSidebar>
+      <ng-container *ngIf="selectedShop$ | async as selectedShop; else noShopContext">
+        <div class="shop-context" *ngIf="!collapsed">
+          <div class="shop-context__label">Selected Shop</div>
+          <div class="shop-context__name">{{ selectedShop.name }}</div>
+        </div>
+
+        <button class="item item-button back-action" type="button" (click)="backToMyShops()">
+          <span class="mi">arrow_back</span>
+          <span class="label" *ngIf="!collapsed">Back to My Shops</span>
+        </button>
+
+        <nav class="nav">
+          <ng-container *ngIf="shopNav$ | async as shopNav">
+            <ng-container *ngFor="let item of shopNav">
+              <a
+                *ngIf="isLink(item)"
+                class="item"
+                [routerLink]="item.route"
+                routerLinkActive="ACTIVE"
+              >
+                <span class="mi">{{ item.icon }}</span>
+                <span class="label" *ngIf="!collapsed">{{ item.label }}</span>
+              </a>
+            </ng-container>
+          </ng-container>
+        </nav>
+      </ng-container>
+
+      <ng-template #noShopContext>
+        <nav class="nav">
+          <ng-container *ngFor="let item of baseNav">
+            <a
+              *ngIf="isLink(item)"
+              class="item"
+              [routerLink]="item.route"
+              routerLinkActive="ACTIVE"
+              [routerLinkActiveOptions]="exactLinkActiveOptions"
+            >
+              <span class="mi">{{ item.icon }}</span>
+              <span class="label" *ngIf="!collapsed">{{ item.label }}</span>
+            </a>
+          </ng-container>
+        </nav>
+      </ng-template>
+      </ng-template>
+    </div>
+
+    <div class="bottom">
+      <div class="user" *ngIf="!collapsed && (user$ | async) as user">
+        <div class="meta">
+          <div class="name">{{ user.fullName }}</div>
+          <div class="badge">{{ user.role }}</div>
+        </div>
+      </div>
+
+      <button class="logout" type="button" (click)="onLogout()">
+        <span class="mi">logout</span>
+        <span *ngIf="!collapsed">Log out</span>
+      </button>
+
+      <button class="collapse-btn" type="button" (click)="toggle()" aria-label="toggle sidebar">
+        <span class="mi">{{ collapsed ? 'chevron_right' : 'chevron_left' }}</span>
+      </button>
+    </div>
+  </div>
+</aside>

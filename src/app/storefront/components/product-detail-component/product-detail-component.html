@@ -1,0 +1,103 @@
+<section class="page">
+  <header class="top">
+    <h1 class="product-name">{{ product.name }}</h1>
+    <a class="store-link" [routerLink]="['/manufacturers', product.shopId]">
+        <div class="store-name">{{ product.storeName }}</div>
+    </a>
+  </header>
+
+  <div class="layout">
+    <div class="gallery">
+      <div class="carousel">
+        <div class="scroller" #scroller (scroll)="onScrollerScroll()">
+          <figure class="slide" *ngFor="let img of images; index as i; trackBy: trackByIndex">
+            <img class="hero" [src]="pictureUrl + img" [alt]="product.name + ' - image ' + (i + 1)" />
+          </figure>
+        </div>
+
+        <button class="nav prev" type="button" (click)="prev()" [disabled]="images.length <= 1">&lsaquo;</button>
+        <button class="nav next" type="button" (click)="next()" [disabled]="images.length <= 1">&rsaquo;</button>
+
+        <div class="dots" *ngIf="images.length > 1">
+          <button
+            class="dot"
+            *ngFor="let _ of images; index as i; trackBy: trackByIndex"
+            type="button"
+            (click)="scrollTo(i)"
+            [class.ACTIVE]="i === ACTIVEIndex"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <div class="price">
+        <div class="price-label">Price</div>
+        <div class="price-value">{{ product.price | currency:'USD' }}</div>
+      </div>
+
+      <div class="meta">
+        <div class="meta-row">
+          <span class="k">Stock</span>
+          <span class="v" [class.bad]="isOutOfStock">
+            {{ isOutOfStock ? 'Out of stock' : (product.stock + ' available') }}
+          </span>
+        </div>
+
+        <div class="meta-row">
+          <span class="k">Category</span>
+          <span class="v">{{ product.categoryName }}</span>
+        </div>
+      </div>
+
+      <div class="qty">
+        <div class="qty-label">Quantity</div>
+
+        <div class="qty-control">
+          <button type="button" class="qty-btn" (click)="decQty()" [disabled]="isOutOfStock || qty <= 1">-</button>
+
+          <input
+            class="qty-input"
+            type="number"
+            [(ngModel)]="qty"
+            (blur)="clampQty()"
+            [min]="isOutOfStock ? 0 : 1"
+            [max]="maxQty"
+            [disabled]="isOutOfStock"
+          />
+
+          <button type="button" class="qty-btn" (click)="incQty()" [disabled]="isOutOfStock || qty >= maxQty">+</button>
+        </div>
+
+        <div class="qty-hint" *ngIf="!isOutOfStock">Max: {{ maxQty }}</div>
+      </div>
+
+      <div class="total">
+        <span>Total</span>
+        <strong>{{ total | currency:'USD' }}</strong>
+      </div>
+
+      <button class="cta" type="button" (click)="onAddToCart()" [disabled]="isOutOfStock || isAdding">
+        @if (justAdded) {
+          Added
+        } @else if (isAdding) {
+          Adding...
+        } @else {
+          Add to cart
+        }
+      </button>
+
+      <div class="note" *ngIf="isOutOfStock">Product unavailable at the moment.</div>
+    </aside>
+  </div>
+
+  <section class="product-description" *ngIf="product.description as description">
+    <h2>Description</h2>
+    <p>{{ description }}</p>
+  </section>
+
+  <section class="product-description" *ngIf="!product.description">
+    <h2>Description</h2>
+    <p>No description available for this product.</p>
+  </section>
+</section>

@@ -1,0 +1,59 @@
+@if (product(); as item) {
+  <nz-card class="product-card" [nzCover]="coverTpl">
+    <ng-template #coverTpl>
+      <a
+        class="product-card__coverLink"
+        [routerLink]="['/product', item.id]"
+        [attr.aria-label]="'Voir le produit ' + item.name"
+      >
+        <img
+          [ngSrc]="pictureUrl + item.imageUrl"
+          width="320"
+          height="220"
+          [alt]="item.name"
+          priority
+        />
+      </a>
+    </ng-template>
+
+    <div class="product-card__content">
+      <nz-card-meta [nzTitle]="item.name" [nzDescription]="storeNameTpl"></nz-card-meta>
+
+      <ng-template #storeNameTpl>
+        @if (item.shopId) {
+          <a [routerLink]="['/manufacturers', item.shopId]">{{ item.storeName }}</a>
+        } @else {
+          <span>{{ item.storeName }}</span>
+        }
+      </ng-template>
+
+      <div class="product-card__meta">
+        <span class="product-card__price">{{ item.price | currency }}</span>
+        <nz-tag [nzColor]="item.stock > 0 ? 'blue' : 'red'">
+          @if (item.stock > 0) {
+            In stock: {{ item.stock }}
+          } @else {
+            Out of stock
+          }
+        </nz-tag>
+      </div>
+
+      <button
+        nz-button
+        nzType="primary"
+        type="button"
+        [nzLoading]="isAdding()"
+        [disabled]="item.stock <= 0"
+        (click)="onAddToCart()"
+      >
+        <span>
+          @if (justAdded()) {
+            Added
+          } @else {
+            Add to cart
+          }
+        </span>
+      </button>
+    </div>
+  </nz-card>
+}

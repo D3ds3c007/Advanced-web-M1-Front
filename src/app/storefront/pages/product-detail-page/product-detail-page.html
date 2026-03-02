@@ -1,0 +1,15 @@
+<app-details-layout>
+  <ng-container *ngIf="product$ | async as product; else notFound">
+    <app-product-details
+      *ngIf="product; else notFound"
+      [product]="product"
+      [isAdding]="addingProductId() === product.id"
+      [justAdded]="addedProductId() === product.id"
+      (addToCart)="onAddToCart($event)"
+    ></app-product-details>
+  </ng-container>
+
+  <ng-template #notFound>
+    <p>Product not found.</p>
+  </ng-template>
+</app-details-layout>

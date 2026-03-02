@@ -1,0 +1,32 @@
+<div class="list">
+  <!-- header row like screenshot -->
+  <div class="list-head">
+    <div></div>
+    <div class="col">ROLE</div>
+    <div class="col right">CONTACT</div>
+  </div>
+
+  <div
+    class="row"
+    *ngFor="let c of customers; trackBy: trackById"
+    [class.active]="isActiveRow(c.id)"
+    (click)="select.emit(c.id)"
+  >
+    <div class="left">
+      <div class="meta">
+        <div class="name">{{ c.fullName }}</div>
+        <div class="company">{{ c.email || 'No email provided' }}</div>
+      </div>
+    </div>
+
+    <div class="type">{{ c.role }}</div>
+
+    <div class="right-side">
+      <span class="status" [class.active]="c.status==='active'" [class.banned]="c.status==='banned'">
+        {{ (c.phone || 'No phone') }}
+      </span>
+    </div>
+  </div>
+
+  <div class="empty" *ngIf="!customers.length">No users found.</div>
+</div>

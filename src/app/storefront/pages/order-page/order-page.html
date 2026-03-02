@@ -1,0 +1,16 @@
+
+<app-details-layout>
+  <ng-container>
+    <app-checkout-header
+      [tabs]="[
+        { label: 'Payment', link: ['/cart'] },
+        { label: 'Order', link: ['/orders'] },
+      ]"
+    ></app-checkout-header>
+    <app-order></app-order>
+  </ng-container>
+
+  <ng-template #notFound>
+    <p>Product not found.</p>
+  </ng-template>
+</app-details-layout>

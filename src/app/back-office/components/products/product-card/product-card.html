@@ -1,0 +1,53 @@
+<div class="p-card" (click)="view.emit(product)">
+  <div class="p-card__top">
+    <button
+      class="icon-btn"
+      type="button"
+      [disabled]="actionsDisabled"
+      (click)="$event.stopPropagation(); toggle.emit(product)"
+      title="Toggle ACTIVE"
+    >
+      <span class="dot" [class.on]="product.status === 'ACTIVE'"></span>
+    </button>
+
+    <button
+      class="icon-btn"
+      type="button"
+      [disabled]="actionsDisabled"
+      (click)="$event.stopPropagation(); edit.emit(product)"
+      title="Edit"
+    >
+      Edit
+    </button>
+  </div>
+
+  <div class="p-card__img">
+    <img [src]="pictureUrl + product.imageUrl" [alt]="product.name" />
+  </div>
+
+  <div class="p-card__row">
+    <div class="name">{{ product.name }}</div>
+    <div class="price">
+      <ng-container *ngIf="product.price === 0; else money">FREE</ng-container>
+      <ng-template #money>{{ product.price | currency:'USD' }}</ng-template>
+    </div>
+  </div>
+
+  <div class="p-card__desc">
+    {{ product.description || 'No description' }}
+  </div>
+
+  <div class="p-card__meta">
+    <span class="chip">Stock: {{ product.stock }}</span>
+    <span class="chip">Status: {{ product.status }}</span>
+
+    <button
+      class="link"
+      type="button"
+      [disabled]="actionsDisabled"
+      (click)="$event.stopPropagation(); remove.emit(product)"
+    >
+      delete
+    </button>
+  </div>
+</div>

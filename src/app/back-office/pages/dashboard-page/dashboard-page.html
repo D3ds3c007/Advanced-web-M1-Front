@@ -1,0 +1,96 @@
+<ng-container *ngIf="contextError$ | async as contextError; else dashboardContent">
+  <div style="padding: 18px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; color: #334155;">
+    {{ contextError }}
+  </div>
+</ng-container>
+
+<ng-template #dashboardContent>
+  <section *ngIf="vm$ | async as vm; else loading">
+    <div class="header">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Overview</p>
+      </div>
+
+      <app-shop-status-badge *ngIf="vm.shopStatus as st" [status]="st"></app-shop-status-badge>
+    </div>
+
+    <div *ngIf="error$ | async as error" style="margin-bottom: 12px; padding: 10px 12px; border-radius: 10px; border: 1px solid #fecaca; background: #fef2f2; color: #991b1b; font-size: 13px;">
+      {{ error }}
+    </div>
+
+    <div class="grid">
+      <ng-container *ngIf="vm.kpiPENDING as kPending">
+        <app-dashboard-card class="c1" [title]="kPending.title" style="grid-column: span 3;">
+          <app-kpi-card [data]="kPending"></app-kpi-card>
+        </app-dashboard-card>
+      </ng-container>
+
+      <ng-container *ngIf="vm.kpiProcessed as kProcessed">
+        <app-dashboard-card class="c2" [title]="kProcessed.title" style="grid-column: span 3;">
+          <app-kpi-card [data]="kProcessed"></app-kpi-card>
+        </app-dashboard-card>
+      </ng-container>
+
+      <ng-container *ngIf="vm.kpiDELIVERED as kDelivered">
+        <app-dashboard-card class="c3" [title]="kDelivered.title" style="grid-column: span 3;">
+          <app-kpi-card [data]="kDelivered"></app-kpi-card>
+        </app-dashboard-card>
+      </ng-container>
+
+      <app-dashboard-card class="c4" title="Revenue" style="grid-column: span 12;">
+        <div card-right class="select">
+          <select #yearSelect [value]="revenueYear" (change)="setRevenueYear(yearSelect.value)" style="border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer;">
+            <option [value]="2024">2024</option>
+            <option [value]="2025">2025</option>
+            <option [value]="2026">2026</option>
+            <option [value]="2027">2027</option>
+          </select>
+          <span class="caret">v</span>
+        </div>
+
+        <ng-container *ngIf="monthlyRevenueState$ | async as revenueState">
+          <div *ngIf="revenueState.loading" class="muted">Loading revenue...</div>
+          <div *ngIf="revenueState.error" class="muted" style="color:#991b1b;">{{ revenueState.error }}</div>
+          <div *ngIf="!revenueState.loading && !revenueState.error && revenueState.empty" class="muted">No revenue for this year.</div>
+          <app-revenue-chart
+            *ngIf="!revenueState.loading && !revenueState.error && !revenueState.empty"
+            [points]="revenueState.data"
+          ></app-revenue-chart>
+        </ng-container>
+      </app-dashboard-card>
+
+      <app-dashboard-card title="Low-stock products" style="grid-column: span 5;">
+        <app-low-stock [products]="vm.lowStock"></app-low-stock>
+      </app-dashboard-card>
+
+      <app-dashboard-card title="Top Product" style="grid-column: span 4;">
+        <app-top-products [products]="vm.topProducts"></app-top-products>
+      </app-dashboard-card>
+
+      <app-mini-tile title="Top buyer" *ngIf="vm.topBuyer as tb" style="grid-column: span 3;">
+        <app-top-buyer-tile [buyer]="tb"></app-top-buyer-tile>
+      </app-mini-tile>
+
+      <app-dashboard-card title="Latest Orders" style="grid-column: span 12;">
+        <ng-container *ngIf="latestOrdersState$ | async as latestOrdersState">
+          <div *ngIf="latestOrdersState.loading" class="muted">Loading orders...</div>
+          <div *ngIf="latestOrdersState.error" class="muted" style="color:#991b1b;">{{ latestOrdersState.error }}</div>
+          <div *ngIf="!latestOrdersState.loading && !latestOrdersState.error && latestOrdersState.empty" class="muted">No recent orders.</div>
+          <app-last-orders-table
+            *ngIf="!latestOrdersState.loading && !latestOrdersState.error && !latestOrdersState.empty"
+            [orders]="latestOrdersState.data"
+          ></app-last-orders-table>
+        </ng-container>
+      </app-dashboard-card>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #loading>
+  <div style="padding: 18px;" *ngIf="loading$ | async; else idleState">Loading dashboard...</div>
+</ng-template>
+
+<ng-template #idleState>
+  <div style="padding: 18px;">Preparing dashboard...</div>
+</ng-template>
