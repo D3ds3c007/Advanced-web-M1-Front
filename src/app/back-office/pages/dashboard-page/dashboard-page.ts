@@ -10,7 +10,6 @@ import { DashboardCardComponent } from '../../components/dashboard/dashboard-car
 import { KpiCardComponent } from '../../components/dashboard/kpi-card/kpi-card';
 import { TopProductsComponent } from '../../components/dashboard/top-products/top-products';
 import { RevenueChartComponent } from '../../components/dashboard/revenue-chart/revenue-chart';
-import { MiniTileComponent } from '../../components/dashboard/mini-tile/mini-tile';
 import { TopBuyerTileComponent } from '../../components/dashboard/top-buyer-tile/top-buyer-tile';
 import { ShopStatusBadgeComponent } from '../../components/dashboard/shop-status-badge/shop-status-badge';
 import { LowStockComponent } from '../../components/dashboard/low-stock/low-stock';
@@ -32,7 +31,6 @@ type AsyncBlockState<T> = {
     KpiCardComponent,
     TopProductsComponent,
     RevenueChartComponent,
-    MiniTileComponent,
     TopBuyerTileComponent,
     ShopStatusBadgeComponent,
     LowStockComponent,

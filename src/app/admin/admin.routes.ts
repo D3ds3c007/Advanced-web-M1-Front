@@ -13,7 +13,7 @@ export const ADMIN_ROUTES: Routes = [
           import('./pages/admin-comissions-page/admin-comissions-page').then(m => m.AdminCommissionsPage),
       },
       {
-        path: 'customers',
+        path: 'users',
         loadComponent: () =>
           import('./pages/admin-customers-page/admin-customers-page').then(m => m.AdminCustomersPage),
       },

@@ -1,4 +1,13 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
   background: #fff;
   border-radius: 16px;
   padding: 18px;
@@ -23,4 +32,8 @@
 .card__right {
   color: #64748b;
   font-size: 12px;
+}
+
+.card__body {
+  flex: 1;
 }

@@ -155,6 +155,12 @@
   color: #64748b;
 }
 
+.field-warning {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #b45309;
+}
+
 .field input,
 .field select,
 .field textarea {
