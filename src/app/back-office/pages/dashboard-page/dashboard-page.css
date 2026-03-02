@@ -26,6 +26,7 @@
 .c1 { grid-column: span 4; }
 .c2 { grid-column: span 4; }
 .c3 { grid-column: span 4; }
+.c-top-buyer { grid-column: span 4; }
 
 /* Second row */
 .c4 { grid-column: span 5; }
@@ -54,7 +55,7 @@
 
 /* Responsive simple */
 @media (max-width: 1100px) {
-  .c1,.c2,.c3 { grid-column: span 12; }
+  .c1,.c2,.c3,.c-top-buyer { grid-column: span 12; }
   .c4,.c5 { grid-column: span 12; }
   .t1,.t2,.t3 { grid-column: span 12; }
   .extras { grid-template-columns: 1fr; }
