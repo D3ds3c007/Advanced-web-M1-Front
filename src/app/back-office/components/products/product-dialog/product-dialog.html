@@ -2,19 +2,11 @@
   <div class="modal" (click)="$event.stopPropagation()">
     <div class="head">
       <h3>{{ title }}</h3>
-<<<<<<< HEAD
       <button class="x" type="button" (click)="cancel.emit()" [disabled]="submitting">&times;</button>
     </div>
 
     <div class="alert" *ngIf="errorMessage">{{ errorMessage }}</div>
     <div class="alert info" *ngIf="loading">Loading...</div>
-=======
-      <button class="x" type="button" (click)="cancel.emit()" [disabled]="submitting">×</button>
-    </div>
-
-    <div class="alert" *ngIf="errorMessage">{{ errorMessage }}</div>
-    <div class="alert info" *ngIf="loading">Chargement...</div>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
     <ng-container *ngIf="isDetailsMode; else editForm">
       <div class="details" *ngIf="product as p">
@@ -36,40 +28,23 @@
         </div>
 
         <div class="details-grid">
-<<<<<<< HEAD
           <div><span>Name</span><strong>{{ p.name }}</strong></div>
           <div><span>Category</span><strong>{{ p.categoryName || p.categoryId }}</strong></div>
           <div><span>Status</span><strong>{{ p.status }}</strong></div>
           <div><span>Price</span><strong>{{ p.price | number:'1.0-2' }}</strong></div>
-=======
-          <div><span>Nom</span><strong>{{ p.name }}</strong></div>
-          <div><span>Catégorie</span><strong>{{ p.categoryName || p.categoryId }}</strong></div>
-          <div><span>Status</span><strong>{{ p.status }}</strong></div>
-          <div><span>Prix</span><strong>{{ p.price | number:'1.0-2' }}</strong></div>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           <div><span>Stock</span><strong>{{ p.stock }}</strong></div>
         </div>
 
         <div class="field">
           <span>Description</span>
-<<<<<<< HEAD
           <div class="details-desc">{{ p.description || 'No description' }}</div>
-=======
-          <div class="details-desc">{{ p.description || 'Aucune description' }}</div>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         </div>
       </div>
 
       <div class="actions">
-<<<<<<< HEAD
         <button type="button" class="btn ghost" (click)="cancel.emit()">Close</button>
         <button type="button" class="btn primary" (click)="openEditFromDetails()" *ngIf="product">
           Edit
-=======
-        <button type="button" class="btn ghost" (click)="cancel.emit()">Fermer</button>
-        <button type="button" class="btn primary" (click)="openEditFromDetails()" *ngIf="product">
-          Modifier
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         </button>
       </div>
     </ng-container>
@@ -79,11 +54,7 @@
         <div class="img-section">
           <div class="img-toolbar">
             <label class="file-btn" [class.disabled]="submitting">
-<<<<<<< HEAD
               Add images
-=======
-              Ajouter images
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
               <input
                 type="file"
                 accept="image/*"
@@ -98,7 +69,6 @@
           <div class="thumbs-edit" *ngIf="retainedImages.length || newImages.length; else noImages">
             <div class="thumb-card" *ngFor="let img of retainedImages; index as i">
               <img [src]="pictureUrl + img" alt="existing image" />
-<<<<<<< HEAD
               <button type="button" class="remove-thumb" (click)="removeExistingImage(i)" [disabled]="submitting">&times;</button>
             </div>
             <div class="thumb-card" *ngFor="let item of newImages; index as i">
@@ -108,36 +78,17 @@
           </div>
           <ng-template #noImages>
             <div class="empty-thumb">No image selected</div>
-=======
-              <button type="button" class="remove-thumb" (click)="removeExistingImage(i)" [disabled]="submitting">×</button>
-            </div>
-            <div class="thumb-card" *ngFor="let item of newImages; index as i">
-              <img [src]=" item.previewUrl" [alt]="item.name" />
-              <button type="button" class="remove-thumb" (click)="removeNewImage(i)" [disabled]="submitting">×</button>
-            </div>
-          </div>
-          <ng-template #noImages>
-            <div class="empty-thumb">Aucune image sélectionnée</div>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           </ng-template>
         </div>
 
         <div class="grid">
           <label class="field">
-<<<<<<< HEAD
             <span>Name</span>
-=======
-            <span>Nom</span>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
             <input formControlName="name" [disabled]="submitting" />
           </label>
 
           <label class="field">
-<<<<<<< HEAD
             <span>Category</span>
-=======
-            <span>Catégorie</span>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
             <select formControlName="categoryId" [disabled]="submitting">
               <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
             </select>
@@ -152,11 +103,7 @@
           </label>
 
           <label class="field">
-<<<<<<< HEAD
             <span>Price</span>
-=======
-            <span>Prix</span>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
             <input type="number" formControlName="price" [disabled]="submitting" />
           </label>
 
@@ -172,15 +119,9 @@
         </div>
 
         <div class="actions">
-<<<<<<< HEAD
           <button type="button" class="btn ghost" (click)="cancel.emit()" [disabled]="submitting">Cancel</button>
           <button type="submit" class="btn primary" [disabled]="submitting || loading">
             {{ submitting ? 'Submitting...' : (mode === 'create' ? 'Create' : 'Save') }}
-=======
-          <button type="button" class="btn ghost" (click)="cancel.emit()" [disabled]="submitting">Annuler</button>
-          <button type="submit" class="btn primary" [disabled]="submitting || loading">
-            {{ submitting ? 'Envoi...' : (mode === 'create' ? 'Créer' : 'Enregistrer') }}
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           </button>
         </div>
       </form>

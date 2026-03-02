@@ -11,11 +11,7 @@
 
   <tbody>
     <tr
-<<<<<<< HEAD
       *ngFor="let o of orders; trackBy: trackByOrderId"
-=======
-      *ngFor="let o of orders"
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       (click)="selectOrder.emit(o.id)"
       [class.ACTIVE]="o.id === selectedId"
     >
@@ -23,20 +19,11 @@
       <td>{{ o.buyer.fullName }}</td>
       <td><span class="pill" [class]="o.status">{{ o.status }}</span></td>
       <td>{{ o.createdAt | date:'short' }}</td>
-<<<<<<< HEAD
       <td class="right">{{ o.total | currency:'USD' }}</td>
-=======
-      <td class="right">{{ o.total | currency:'EUR' }}</td>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     </tr>
   </tbody>
 </table>
 
 <ng-template #empty>
-<<<<<<< HEAD
   <div class="empty">No orders.</div>
 </ng-template>
-=======
-  <div class="empty">Aucune commande.</div>
-</ng-template>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

@@ -1,5 +1,4 @@
 <section class="checkout">
-<<<<<<< HEAD
   <h2 class="title">Checkout</h2>
 
   <ng-container *ngIf="lines$ | async as lines">
@@ -16,38 +15,10 @@
           <input type="tel" formControlName="phone" placeholder="Example: 06 12 34 56 78" />
           <small class="error" *ngIf="form.controls.phone.touched && form.controls.phone.invalid">
             Phone is required.
-=======
-  <h2 class="title">Paiement</h2>
-
-  <ng-container *ngIf="lines$ | async as lines">
-    <p *ngIf="lines.length === 0" class="empty">
-      Votre panier est vide.
-    </p>
-
-    <div class="grid" *ngIf="lines.length > 0">
-      <!-- Form -->
-      <form class="panel" [formGroup]="form" (ngSubmit)="confirm(lines)">
-        <h3 class="panelTitle">Informations de livraison</h3>
-
-        <div class="field">
-          <label>Nom complet</label>
-          <input type="text" formControlName="fullName" placeholder="Ex: Jean Dupont" />
-          <small class="error" *ngIf="form.controls.fullName.touched && form.controls.fullName.invalid">
-            Nom requis.
           </small>
         </div>
 
         <div class="field">
-          <label>Téléphone</label>
-          <input type="tel" formControlName="phone" placeholder="Ex: 06 12 34 56 78" />
-          <small class="error" *ngIf="form.controls.phone.touched && form.controls.phone.invalid">
-            Téléphone requis.
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
-          </small>
-        </div>
-
-        <div class="field">
-<<<<<<< HEAD
           <label>Address</label>
           <textarea rows="3" formControlName="address" placeholder="Street, city, ZIP code..."></textarea>
           <small class="error" *ngIf="form.controls.address.touched && form.controls.address.invalid">
@@ -60,51 +31,6 @@
         <div class="mmBox">
           <div class="field">
             <label>Mobile Money</label>
-=======
-          <label>Adresse</label>
-          <textarea rows="3" formControlName="address" placeholder="Rue, ville, code postal..."></textarea>
-          <small class="error" *ngIf="form.controls.address.touched && form.controls.address.invalid">
-            Adresse requise.
-          </small>
-        </div>
-
-        <div class="field">
-          <label>Note (optionnel)</label>
-          <textarea rows="2" formControlName="note" placeholder="Ex: Laisser au gardien..."></textarea>
-        </div>
-
-        <hr class="divider" />
-
-        <h3 class="panelTitle">Livraison</h3>
-        <div class="field">
-          <label>Option</label>
-          <select formControlName="deliveryId">
-            <option *ngFor="let o of deliveryOptions" [value]="o.id">
-              {{ o.label }} — {{ o.fee | currency: currencyCode:'symbol':'1.2-2' }}
-            </option>
-          </select>
-        </div>
-
-        <hr class="divider" />
-
-        <h3 class="panelTitle">Paiement</h3>
-
-        <div class="radioGroup">
-          <label class="radio">
-            <input type="radio" formControlName="paymentMethod" value="COD" />
-            Paiement à la livraison (COD)
-          </label>
-
-          <label class="radio">
-            <input type="radio" formControlName="paymentMethod" value="MOBILE_MONEY" />
-            Mobile Money (mock)
-          </label>
-        </div>
-
-        <div class="mmBox" *ngIf="form.value.paymentMethod === 'MOBILE_MONEY'">
-          <div class="field">
-            <label>Opérateur</label>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
             <select formControlName="provider">
               <option value="MTN">MTN</option>
               <option value="Orange">Orange</option>
@@ -112,7 +38,6 @@
             </select>
           </div>
 
-<<<<<<< HEAD
         </div>
 
         <button class="confirm" type="submit" [disabled]="submitting || form.invalid || lines.length === 0">
@@ -122,34 +47,12 @@
 
       <aside class="summary">
         <h3 class="summaryTitle">Order summary</h3>
-=======
-          <div class="field">
-            <label>Numéro Mobile Money (mock)</label>
-            <input type="tel" formControlName="mmNumber" placeholder="Ex: +229..." />
-          </div>
-
-          <small class="hint">Mock: aucune transaction réelle n’est effectuée.</small>
-        </div>
-
-        <button class="confirm" type="submit" [disabled]="submitting || form.invalid || lines.length === 0">
-          {{ submitting ? 'Confirmation...' : 'Confirmer' }}
-        </button>
-      </form>
-
-      <!-- Résumé -->
-      <aside class="summary">
-        <h3 class="summaryTitle">Résumé commande</h3>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
         <ul class="sumList">
           <li class="sumItem" *ngFor="let line of lines; trackBy: trackByProductId">
             <div class="sumLeft">
               <div class="sumName">{{ line.product.name }}</div>
-<<<<<<< HEAD
               <div class="sumMeta">Qty: {{ line.quantity }}</div>
-=======
-              <div class="sumMeta">Qté: {{ line.quantity }}</div>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
             </div>
             <div class="sumRight">
               {{ (line.product.price * line.quantity) | currency: currencyCode:'symbol':'1.2-2' }}
@@ -157,19 +60,6 @@
           </li>
         </ul>
 
-<<<<<<< HEAD
-=======
-        <div class="sumRow">
-          <span>Sous-total</span>
-          <strong>{{ subtotal(lines) | currency: currencyCode:'symbol':'1.2-2' }}</strong>
-        </div>
-
-        <div class="sumRow">
-          <span>Livraison</span>
-          <strong>{{ deliveryFee() | currency: currencyCode:'symbol':'1.2-2' }}</strong>
-        </div>
-
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         <hr class="divider" />
 
         <div class="sumRow total">
@@ -178,21 +68,9 @@
         </div>
 
         <div class="paymentRecap">
-<<<<<<< HEAD
           <div><strong>Payment:</strong> {{ form.value.provider }}</div>
-=======
-          <div><strong>Paiement :</strong> {{ form.value.paymentMethod }}</div>
-          <div *ngIf="form.value.paymentMethod === 'MOBILE_MONEY'">
-            <strong>Opérateur :</strong> {{ form.value.provider }} —
-            <strong>Numéro :</strong> {{ form.value.mmNumber || '—' }}
-          </div>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         </div>
       </aside>
     </div>
   </ng-container>
-<<<<<<< HEAD
 </section>
-=======
-</section>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

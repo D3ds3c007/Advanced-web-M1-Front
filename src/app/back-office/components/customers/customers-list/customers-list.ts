@@ -14,7 +14,6 @@ export class CustomersListComponent {
   @Input() selectedId: string | null = null;
 
   @Output() select = new EventEmitter<string>();
-<<<<<<< HEAD
 
   trackById(_index: number, customer: Customer): string {
     return customer.id;
@@ -22,9 +21,3 @@ export class CustomersListComponent {
 }
 
 export { CustomersListComponent as CustomersList };
-=======
-  @Output() edit = new EventEmitter<Customer>();
-  @Output() remove = new EventEmitter<Customer>();
-  @Output() call = new EventEmitter<Customer>();
-}
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

@@ -12,10 +12,7 @@ import { RevenuePoint } from '../../../services/dashboard-service';
 export class RevenueChartComponent {
   @Input() points: RevenuePoint[] = [];
   private readonly monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-<<<<<<< HEAD
   hoveredIndex: number | null = null;
-=======
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
   w = 700;
   h = 240;
@@ -55,7 +52,6 @@ export class RevenueChartComponent {
     }
     return point.year;
   }
-<<<<<<< HEAD
 
   showTooltip(index: number): void {
     this.hoveredIndex = index;
@@ -82,6 +78,4 @@ export class RevenueChartComponent {
   tooltipValue(point: RevenuePoint): string {
     return `${point.valueK}K`;
   }
-=======
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 }

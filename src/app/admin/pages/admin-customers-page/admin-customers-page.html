@@ -9,22 +9,14 @@
     </app-dashboard-card>
   </div>
 
-<<<<<<< HEAD
   <app-dashboard-card title="Users">
-=======
-  <app-dashboard-card title="Customers">
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     <div class="controls">
       <input
         class="search"
         [ngModel]="vm.query.search"
         (ngModelChange)="setSearch($event)"
         [ngModelOptions]="{ standalone: true }"
-<<<<<<< HEAD
         placeholder="Search user..."
-=======
-        placeholder="Search customer..."
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       />
 
       <div class="sort">
@@ -40,20 +32,10 @@
       [customers]="vm.customers"
       [selectedId]="vm.selectedId"
       (select)="select($event)"
-<<<<<<< HEAD
-=======
-      (toggleStatus)="toggleStatus($event)"
-      (remove)="remove($event)"
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     ></app-admin-customers-list>
   </app-dashboard-card>
 </section>
 
 <ng-template #loading>
-<<<<<<< HEAD
   <div style="padding: 18px;">{{ errorMessage || (loading ? 'Loading...' : 'Loading...') }}</div>
 </ng-template>
-=======
-  <div style="padding: 18px;">Loading...</div>
-</ng-template>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

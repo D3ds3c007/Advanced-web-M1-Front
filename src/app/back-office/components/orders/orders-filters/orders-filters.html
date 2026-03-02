@@ -3,11 +3,7 @@
     [ngModel]="query.search"
     (ngModelChange)="queryChange.emit({ search: $event })"
     [ngModelOptions]="{ standalone: true }"
-<<<<<<< HEAD
     placeholder="Search (id, buyer)..."
-=======
-    placeholder="Rechercher (id, buyer)..."
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   />
 
   <select
@@ -17,8 +13,4 @@
   >
     <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
   </select>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

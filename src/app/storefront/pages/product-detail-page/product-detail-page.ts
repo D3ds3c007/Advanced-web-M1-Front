@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component, inject, signal } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -8,15 +7,6 @@ import { finalize, take } from 'rxjs/operators';
 import { DetailsLayout } from '../details-layout/details-layout';
 import { ProductDetailsComponent } from '../../components/product-detail-component/product-detail-component';
 import { CartService } from '../../services/cart.service';
-=======
-import { Component, inject } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs';
-
-import { DetailsLayout } from '../details-layout/details-layout';
-import { ProductDetailsComponent } from '../../components/product-detail-component/product-detail-component';
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 import { ProductService, Product } from '../../services/product.service';
 
 @Component({
@@ -28,13 +18,10 @@ import { ProductService, Product } from '../../services/product.service';
 export class ProductDetailsPage {
   private readonly route = inject(ActivatedRoute);
   private readonly productService = inject(ProductService);
-<<<<<<< HEAD
   private readonly cartService = inject(CartService);
 
   readonly addingProductId = signal<string | null>(null);
   readonly addedProductId = signal<string | null>(null);
-=======
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
   readonly product$ = this.route.paramMap.pipe(
     map(pm => pm.get('id')),
@@ -43,7 +30,6 @@ export class ProductDetailsPage {
   );
 
   onAddToCart(e: { productId: string; quantity: number }) {
-<<<<<<< HEAD
     this.addingProductId.set(e.productId);
 
     this.cartService
@@ -58,17 +44,9 @@ export class ProductDetailsPage {
           setTimeout(() => this.addedProductId.set(null), 1200);
         },
       });
-=======
-    // tu as déjà une méthode dans ton service
-    this.productService.handleAddToCart(e);
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   }
 
   trackByProductId(_i: number, p: Product) {
     return p.id;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
