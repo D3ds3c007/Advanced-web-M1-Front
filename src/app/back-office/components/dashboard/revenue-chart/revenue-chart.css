@@ -1,7 +1,10 @@
 .chart {
   width: 100%;
   height: 220px;
+<<<<<<< HEAD
   position: relative;
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 }
 
 svg { width: 100%; height: 100%; }
@@ -14,6 +17,7 @@ svg { width: 100%; height: 100%; }
 .labels text {
   fill: #94a3b8;
   font-size: 11px;
+<<<<<<< HEAD
 }
 
 .points .point {
@@ -56,3 +60,6 @@ svg { width: 100%; height: 100%; }
   fill: #ffffff;
   font-weight: 700;
 }
+=======
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

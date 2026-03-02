@@ -10,12 +10,21 @@
     </thead>
 
     <tbody>
+<<<<<<< HEAD
       <tr *ngFor="let c of commissions; trackBy: trackByCommissionId">
         <td class="name">{{ c.name }}</td>
 
         <td class="mono">
           &lt; {{ c.rule.thresholdEur }} USD -> ${{ c.rule.fixedUnderUsd }}
           | &gt;= {{ c.rule.thresholdEur }} USD -> {{ c.rule.percentAbove }}%
+=======
+      <tr *ngFor="let c of commissions">
+        <td class="name">{{ c.name }}</td>
+
+        <td class="mono">
+          &lt; {{ c.rule.thresholdEur }}€ → ${{ c.rule.fixedUnderUsd }}
+          | ≥ {{ c.rule.thresholdEur }}€ → {{ c.rule.percentAbove }}%
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         </td>
 
         <td>
@@ -48,4 +57,8 @@
   <ng-template #empty>
     <div class="empty">No commissions.</div>
   </ng-template>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

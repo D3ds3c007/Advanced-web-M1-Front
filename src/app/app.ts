@@ -13,6 +13,12 @@ import { AuthStateService, User } from './core/services/auth-state.service';
 import { catchError, of } from 'rxjs';
 import { LoadingService } from './core/services/loading.service';
 import { GlobalLoadingComponent } from './shared/components/global-loading/global-loading.component';
+=======
+import { Component, OnInit, signal } from '@angular/core';
+import { AuthService } from './auth/services/auth.service';
+import { RouterOutlet } from '@angular/router';
+import { AuthStateService, User } from './core/services/auth-state.service';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -46,6 +52,10 @@ export class App implements OnInit {
         }
       });
 
+
+  constructor(private auth: AuthService, private authState: AuthStateService) {}
+
+   ngOnInit(): void {
     this.auth.me().pipe(
       catchError(() => of(null))
     ).subscribe((res) => {

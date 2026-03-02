@@ -164,9 +164,12 @@
   margin-top: 14px;
   width: 100%;
   height: 46px;
+<<<<<<< HEAD
   display: inline-flex;
   align-items: center;
   justify-content: center;
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   border-radius: 14px;
   border: 0;
   background: #111827;
@@ -231,4 +234,8 @@
     font-size: 14px;
     line-height: 1.65;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

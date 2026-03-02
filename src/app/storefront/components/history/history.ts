@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { APP_CURRENCY } from '../../../core/constants/app-locale';
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
 type OrderStatus = 'PAID' | 'PENDING' | 'CANCELLED';
 type PaymentMethod = 'COD' | 'MOBILE_MONEY';
@@ -9,12 +12,23 @@ type PaymentMethod = 'COD' | 'MOBILE_MONEY';
 type HistoryOrder = {
   id: string;
   orderNumber: string;
+<<<<<<< HEAD
   createdAt: string;
   total: number;
   status: OrderStatus;
   customerName: string;
   phone: string;
   address: string;
+=======
+  createdAt: string; // ISO
+  total: number;
+  status: OrderStatus;
+
+  customerName: string;
+  phone: string;
+  address: string;
+
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   paymentMethod: PaymentMethod;
   note?: string;
 };
@@ -32,11 +46,21 @@ type StatusFilter = 'ALL' | OrderStatus;
   styleUrls: ['./history.css'],
 })
 export class HistoryComponent {
+<<<<<<< HEAD
   currencyCode = APP_CURRENCY;
+=======
+  currencyCode = 'EUR';
+
+  // UI state
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   expandedId: string | null = null;
   statusFilter: StatusFilter = 'ALL';
   search = '';
 
+<<<<<<< HEAD
+=======
+  // Mock: historique (tous les statuts)
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   orders: HistoryOrder[] = [
     {
       id: '1',
@@ -48,7 +72,11 @@ export class HistoryComponent {
       phone: '06 12 34 56 78',
       address: '12 rue Exemple, Paris',
       paymentMethod: 'COD',
+<<<<<<< HEAD
       note: 'Ring the intercom',
+=======
+      note: 'Sonner à l’interphone',
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     },
     {
       id: '2',
@@ -56,7 +84,11 @@ export class HistoryComponent {
       createdAt: '2026-02-19T12:10:00.000Z',
       total: 59,
       status: 'PENDING',
+<<<<<<< HEAD
       customerName: 'Awa Traore',
+=======
+      customerName: 'Awa Traoré',
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       phone: '+225 07 00 00 00',
       address: 'Abidjan, Cocody',
       paymentMethod: 'MOBILE_MONEY',
@@ -101,11 +133,19 @@ export class HistoryComponent {
           o.phone.toLowerCase().includes(q)
         );
       })
+<<<<<<< HEAD
       .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+=======
+      .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)); // plus récent d'abord
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   }
 
   clearFilters() {
     this.statusFilter = 'ALL';
     this.search = '';
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

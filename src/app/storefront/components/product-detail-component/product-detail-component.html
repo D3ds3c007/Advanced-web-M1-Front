@@ -1,12 +1,20 @@
 <section class="page">
   <header class="top">
     <h1 class="product-name">{{ product.name }}</h1>
+<<<<<<< HEAD
     <a class="store-link" [routerLink]="['/manufacturers', product.shopId]">
+=======
+    <a class="store-link" routerLink="/manufacturers">
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         <div class="store-name">{{ product.storeName }}</div>
     </a>
   </header>
 
   <div class="layout">
+<<<<<<< HEAD
+=======
+    <!-- 2/3 : Carousel -->
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     <div class="gallery">
       <div class="carousel">
         <div class="scroller" #scroller (scroll)="onScrollerScroll()">
@@ -15,8 +23,13 @@
           </figure>
         </div>
 
+<<<<<<< HEAD
         <button class="nav prev" type="button" (click)="prev()" [disabled]="images.length <= 1">&lsaquo;</button>
         <button class="nav next" type="button" (click)="next()" [disabled]="images.length <= 1">&rsaquo;</button>
+=======
+        <button class="nav prev" type="button" (click)="prev()" [disabled]="images.length <= 1">‹</button>
+        <button class="nav next" type="button" (click)="next()" [disabled]="images.length <= 1">›</button>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
         <div class="dots" *ngIf="images.length > 1">
           <button
@@ -30,31 +43,56 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <aside class="panel">
       <div class="price">
         <div class="price-label">Price</div>
         <div class="price-value">{{ product.price | currency:'USD' }}</div>
+=======
+    <!-- TODO : -->
+
+    <!-- 1/3 : Infos + commande -->
+    <aside class="panel">
+      <div class="price">
+        <div class="price-label">Prix</div>
+        <div class="price-value">{{ product.price | currency:'EUR' }}</div>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       </div>
 
       <div class="meta">
         <div class="meta-row">
           <span class="k">Stock</span>
           <span class="v" [class.bad]="isOutOfStock">
+<<<<<<< HEAD
             {{ isOutOfStock ? 'Out of stock' : (product.stock + ' available') }}
+=======
+            {{ isOutOfStock ? 'Rupture' : (product.stock + ' disponibles') }}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           </span>
         </div>
 
         <div class="meta-row">
+<<<<<<< HEAD
           <span class="k">Category</span>
+=======
+          <span class="k">Catégorie</span>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           <span class="v">{{ product.categoryName }}</span>
         </div>
       </div>
 
       <div class="qty">
+<<<<<<< HEAD
         <div class="qty-label">Quantity</div>
 
         <div class="qty-control">
           <button type="button" class="qty-btn" (click)="decQty()" [disabled]="isOutOfStock || qty <= 1">-</button>
+=======
+        <div class="qty-label">Quantité</div>
+
+        <div class="qty-control">
+          <button type="button" class="qty-btn" (click)="decQty()" [disabled]="isOutOfStock || qty <= 1">−</button>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
           <input
             class="qty-input"
@@ -74,6 +112,7 @@
 
       <div class="total">
         <span>Total</span>
+<<<<<<< HEAD
         <strong>{{ total | currency:'USD' }}</strong>
       </div>
 
@@ -88,6 +127,16 @@
       </button>
 
       <div class="note" *ngIf="isOutOfStock">Product unavailable at the moment.</div>
+=======
+        <strong>{{ total | currency:'EUR' }}</strong>
+      </div>
+
+      <button class="cta" type="button" (click)="onAddToCart()" [disabled]="isOutOfStock">
+        Add to cart
+      </button>
+
+      <div class="note" *ngIf="isOutOfStock">Produit indisponible pour le moment.</div>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     </aside>
   </div>
 
@@ -98,6 +147,10 @@
 
   <section class="product-description" *ngIf="!product.description">
     <h2>Description</h2>
+<<<<<<< HEAD
     <p>No description available for this product.</p>
+=======
+    <p>Aucune description disponible pour ce produit.</p>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   </section>
 </section>

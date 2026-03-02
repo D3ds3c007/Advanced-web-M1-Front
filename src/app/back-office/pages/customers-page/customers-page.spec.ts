@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+<<<<<<< HEAD
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
 import { CustomersPage } from './customers-page';
 
@@ -11,6 +14,7 @@ describe('CustomersPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+<<<<<<< HEAD
       imports: [CustomersPage],
       providers: [
         provideHttpClient(),
@@ -32,6 +36,9 @@ describe('CustomersPage', () => {
           },
         },
       ],
+=======
+      imports: [CustomersPage]
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     })
     .compileComponents();
 

@@ -163,7 +163,11 @@ export class ProductsPage implements OnInit {
   onDelete(p: Product): void {
     const productId = p._id || p.id;
     if (!this.shopId || !productId || this.isBusy(productId)) return;
+<<<<<<< HEAD
     if (!confirm(`Delete "${p.name}"?`)) return;
+=======
+    if (!confirm(`Supprimer "${p.name}" ?`)) return;
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
     this.setBusy(productId, true);
     this.errorMessage = null;

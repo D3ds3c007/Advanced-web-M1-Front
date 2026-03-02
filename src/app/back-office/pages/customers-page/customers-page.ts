@@ -1,14 +1,23 @@
+<<<<<<< HEAD
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+=======
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 import { tap } from 'rxjs';
 
 import { CustomersBackService } from '../../services/customers-back';
 import { DashboardCardComponent } from '../../components/dashboard/dashboard-card/dashboard-card';
 import { KpiCardComponent } from '../../components/dashboard/kpi-card/kpi-card';
 import { CustomersListComponent } from '../../components/customers/customers-list/customers-list';
+<<<<<<< HEAD
 import { SelectedShopStateService } from '../../services/selected-shop-state.service';
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
 @Component({
   selector: 'app-customers-page',
@@ -17,6 +26,7 @@ import { SelectedShopStateService } from '../../services/selected-shop-state.ser
   templateUrl: './customers-page.html',
   styleUrls: ['./customers-page.css'],
 })
+<<<<<<< HEAD
 export class CustomersPage implements OnInit {
   private readonly service = inject(CustomersBackService);
   private readonly selectedShopState = inject(SelectedShopStateService);
@@ -82,3 +92,23 @@ export class CustomersPage implements OnInit {
     return 'Failed to load customers';
   }
 }
+=======
+export class CustomersPage {
+  private service = inject(CustomersBackService);
+
+  vm$ = this.service.vm$.pipe(
+    tap(vm => this.service.ensureSelectedFirst(vm.customers))
+  );
+
+  setSearch(v: string) { this.service.setQuery({ search: v }); }
+  setSort(v: 'newest'|'oldest') { this.service.setQuery({ sort: v }); }
+
+  select(id: string) { this.service.select(id); }
+
+  onEdit(c: any) { alert('Edit customer: ' + c.fullName); }
+  onCall(c: any) { alert('Call customer: ' + c.fullName); }
+  onDelete(c: any) {
+    if (confirm(`Supprimer ${c.fullName} ?`)) this.service.delete(c.id);
+  }
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

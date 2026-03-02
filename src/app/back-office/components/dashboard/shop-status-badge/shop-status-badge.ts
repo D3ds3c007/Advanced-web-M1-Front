@@ -8,7 +8,11 @@ import { ShopStatus } from '../../../services/dashboard-service';
   imports: [CommonModule],
   template: `
     <span class="badge" [class.ACTIVE]="status === 'ACTIVE'" [class.PENDING]="status === 'PENDING'">
+<<<<<<< HEAD
       {{ status === 'ACTIVE' ? 'Shop ACTIVE' : 'Shop pending' }}
+=======
+      {{ status === 'ACTIVE' ? 'Boutique ACTIVE' : 'Boutique en attente' }}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     </span>
   `,
   styles: [`
@@ -26,4 +30,8 @@ import { ShopStatus } from '../../../services/dashboard-service';
 })
 export class ShopStatusBadgeComponent {
   @Input({ required: true }) status!: ShopStatus;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

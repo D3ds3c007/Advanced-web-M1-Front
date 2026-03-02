@@ -16,6 +16,7 @@
       </a>
     </ng-template>
 
+<<<<<<< HEAD
     <div class="product-card__content">
       <nz-card-meta [nzTitle]="item.name" [nzDescription]="storeNameTpl"></nz-card-meta>
 
@@ -55,5 +56,44 @@
         </span>
       </button>
     </div>
+=======
+    <nz-card-meta [nzTitle]="item.name" [nzDescription]="storeNameTpl"></nz-card-meta>
+
+    <ng-template #storeNameTpl>
+      @if (item.shopId) {
+        <a [routerLink]="['/manufacturers', item.shopId]">{{ item.storeName }}</a>
+      } @else {
+        <span>{{ item.storeName }}</span>
+      }
+    </ng-template>
+
+    <div class="product-card__meta">
+      <span class="product-card__price">{{ item.price | currency }}</span>
+      <nz-tag [nzColor]="item.stock > 0 ? 'blue' : 'red'">
+        @if (item.stock > 0) {
+          In stock: {{ item.stock }}
+        } @else {
+          Out of stock
+        }
+      </nz-tag>
+    </div>
+
+    <button
+      nz-button
+      nzType="primary"
+      type="button"
+      [nzLoading]="isAdding()"
+      [disabled]="item.stock <= 0"
+      (click)="onAddToCart()"
+    >
+      <span>
+        @if (justAdded()) {
+          Added
+        } @else {
+          Add to cart
+        }
+      </span>
+    </button>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   </nz-card>
 }

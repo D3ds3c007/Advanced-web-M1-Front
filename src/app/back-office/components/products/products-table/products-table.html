@@ -3,10 +3,17 @@
     <thead>
       <tr>
         <th>Image</th>
+<<<<<<< HEAD
         <th>Name</th>
         <th class="right">Price</th>
         <th class="right">Stock</th>
         <th>Status</th>
+=======
+        <th>Nom</th>
+        <th class="right">Prix</th>
+        <th class="right">Stock</th>
+        <th>Statut</th>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         <th class="right">Actions</th>
       </tr>
     </thead>
@@ -15,7 +22,11 @@
       <tr *ngFor="let p of products; trackBy: trackByProductId" (click)="view.emit(p)">
         <td><img class="thumb" [src]="pictureUrl + p.imageUrl" [alt]="p.name" /></td>
         <td class="name">{{ p.name }}</td>
+<<<<<<< HEAD
         <td class="right">{{ p.price === 0 ? 'FREE' : (p.price | currency:'USD') }}</td>
+=======
+        <td class="right">{{ p.price === 0 ? 'FREE' : (p.price | currency:'EUR') }}</td>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         <td class="right">{{ p.stock }}</td>
         <td>
           <span class="pill" [class.on]="p.status==='ACTIVE'">{{ p.status }}</span>
@@ -26,12 +37,20 @@
           </button>
           <button type="button" [disabled]="isDisabled(p)" (click)="$event.stopPropagation(); edit.emit(p)">edit</button>
           <button type="button" class="danger" [disabled]="isDisabled(p)" (click)="$event.stopPropagation(); remove.emit(p)">delete</button>
+<<<<<<< HEAD
         </td>
+=======
+        </td> 
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       </tr>
     </tbody>
   </table>
 
   <ng-template #empty>
+<<<<<<< HEAD
     <div class="empty">No products.</div>
+=======
+    <div class="empty">Aucun produit.</div>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   </ng-template>
 </div>

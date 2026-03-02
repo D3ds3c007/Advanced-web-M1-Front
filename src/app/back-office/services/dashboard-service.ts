@@ -16,7 +16,10 @@ export interface KpiCard {
 }
 
 export interface TopProduct {
+<<<<<<< HEAD
   productId?: string;
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   name: string;
   valueK: number;
 }
@@ -264,8 +267,12 @@ export class DashboardService {
       .get<TopProductsResponse>(`${this.apiUrl}shops/${shopId}/top-products-by-revenue`, { withCredentials: true })
       .pipe(
         map((res) =>
+<<<<<<< HEAD
           (res.topProducts ?? []).map((p) => ({
             productId: p.productId ? String(p.productId) : undefined,
+=======
+          (res.topProducts ?? []).slice(0, 1).map((p) => ({
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
             name: String(p.name ?? 'N/A').toUpperCase(),
             valueK: this.toK(p.totalRevenue ?? 0),
           }))
@@ -324,6 +331,7 @@ export class DashboardService {
 
     return {
       kpiProcessed: {
+<<<<<<< HEAD
         title: 'Processed orders',
         percent: input.processedCount,
         trend: input.processedCount > 0 ? 'up' : undefined,
@@ -340,6 +348,24 @@ export class DashboardService {
         title: 'Delivered orders',
         percent: input.deliveredCount,
         subtitle: 'Status DELIVERED',
+=======
+        title: 'Commandes traitees',
+        percent: input.processedCount,
+        trend: input.processedCount > 0 ? 'up' : undefined,
+        subtitle: 'Statut CONFIRMED',
+        linkText: '',
+      },
+      kpiPENDING: {
+        title: 'Commandes en attente',
+        percent: input.pendingCount,
+        subtitle: 'Statut PENDING',
+        linkText: '',
+      },
+      kpiDELIVERED: {
+        title: 'Commandes livrees',
+        percent: input.deliveredCount,
+        subtitle: 'Statut DELIVERED',
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         linkText: '',
       },
       topProducts: input.topProducts,
@@ -351,8 +377,13 @@ export class DashboardService {
       ],
       topBuyer:
         input.topCustomers[0] ?? {
+<<<<<<< HEAD
           name: 'No customer',
           company: 'No orders',
+=======
+          name: 'Aucun client',
+          company: 'Aucune commande',
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           avatarUrl: 'https://i.pravatar.cc/80?u=empty-buyer',
         },
       shopStatus,

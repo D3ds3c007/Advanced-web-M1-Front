@@ -38,7 +38,11 @@
         </app-dashboard-card>
       </ng-container>
 
+<<<<<<< HEAD
       <app-dashboard-card class="c4" title="Revenue" style="grid-column: span 12;">
+=======
+      <app-dashboard-card class="c4" title="Revenu" style="grid-column: span 12;">
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         <div card-right class="select">
           <select #yearSelect [value]="revenueYear" (change)="setRevenueYear(yearSelect.value)" style="border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer;">
             <option [value]="2024">2024</option>
@@ -50,9 +54,15 @@
         </div>
 
         <ng-container *ngIf="monthlyRevenueState$ | async as revenueState">
+<<<<<<< HEAD
           <div *ngIf="revenueState.loading" class="muted">Loading revenue...</div>
           <div *ngIf="revenueState.error" class="muted" style="color:#991b1b;">{{ revenueState.error }}</div>
           <div *ngIf="!revenueState.loading && !revenueState.error && revenueState.empty" class="muted">No revenue for this year.</div>
+=======
+          <div *ngIf="revenueState.loading" class="muted">Chargement du revenu...</div>
+          <div *ngIf="revenueState.error" class="muted" style="color:#991b1b;">{{ revenueState.error }}</div>
+          <div *ngIf="!revenueState.loading && !revenueState.error && revenueState.empty" class="muted">Aucun revenu pour cette annee.</div>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           <app-revenue-chart
             *ngIf="!revenueState.loading && !revenueState.error && !revenueState.empty"
             [points]="revenueState.data"
@@ -60,7 +70,11 @@
         </ng-container>
       </app-dashboard-card>
 
+<<<<<<< HEAD
       <app-dashboard-card title="Low-stock products" style="grid-column: span 5;">
+=======
+      <app-dashboard-card title="Produits low stock" style="grid-column: span 5;">
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
         <app-low-stock [products]="vm.lowStock"></app-low-stock>
       </app-dashboard-card>
 
@@ -74,9 +88,15 @@
 
       <app-dashboard-card title="Latest Orders" style="grid-column: span 12;">
         <ng-container *ngIf="latestOrdersState$ | async as latestOrdersState">
+<<<<<<< HEAD
           <div *ngIf="latestOrdersState.loading" class="muted">Loading orders...</div>
           <div *ngIf="latestOrdersState.error" class="muted" style="color:#991b1b;">{{ latestOrdersState.error }}</div>
           <div *ngIf="!latestOrdersState.loading && !latestOrdersState.error && latestOrdersState.empty" class="muted">No recent orders.</div>
+=======
+          <div *ngIf="latestOrdersState.loading" class="muted">Chargement des commandes...</div>
+          <div *ngIf="latestOrdersState.error" class="muted" style="color:#991b1b;">{{ latestOrdersState.error }}</div>
+          <div *ngIf="!latestOrdersState.loading && !latestOrdersState.error && latestOrdersState.empty" class="muted">Aucune commande recente.</div>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
           <app-last-orders-table
             *ngIf="!latestOrdersState.loading && !latestOrdersState.error && !latestOrdersState.empty"
             [orders]="latestOrdersState.data"

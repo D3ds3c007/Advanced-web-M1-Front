@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, combineLatest, map, of, tap, throwError } from 'rxjs';
@@ -6,6 +7,13 @@ import { environment } from '../../../environments/environment';
 
 export type OrderStatus =
   | 'pending'
+=======
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
+
+export type OrderStatus =
+  | 'PENDING'
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   | 'confirmed'
   | 'preparing'
   | 'ready'
@@ -41,8 +49,11 @@ export interface OrderStatusEvent {
 
 export interface Order {
   id: string;
+<<<<<<< HEAD
   rawId: string;
   shopId: string;
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   createdAt: string; // ISO
   status: OrderStatus;
 
@@ -62,6 +73,7 @@ export interface OrdersQuery {
   status: OrderStatus | 'all';
 }
 
+<<<<<<< HEAD
 type BackendOrderStatus =
   | 'PENDING'
   | 'CONFIRMED'
@@ -104,6 +116,9 @@ interface OrderUpdateResponse {
 }
 
 const STATUS_FLOW: OrderStatus[] = ['pending', 'confirmed', 'preparing', 'ready', 'delivered'];
+=======
+const STATUS_FLOW: OrderStatus[] = ['PENDING', 'confirmed', 'preparing', 'ready', 'delivered'];
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
 function nowIso() {
   return new Date().toISOString();
@@ -112,10 +127,14 @@ function nowIso() {
 
 @Injectable({ providedIn: 'root' })
 export class OrdersBackService {
+<<<<<<< HEAD
   private readonly http = inject(HttpClient);
   private readonly apiUrl = environment.apiUrl;
 
   private readonly ordersSubject = new BehaviorSubject<Order[]>([]);
+=======
+  private readonly ordersSubject = new BehaviorSubject<Order[]>(this.seedOrders());
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   private readonly querySubject = new BehaviorSubject<OrdersQuery>({ search: '', status: 'all' });
   private readonly selectedIdSubject = new BehaviorSubject<string | null>(null);
 
@@ -163,6 +182,7 @@ export class OrdersBackService {
     }
   }
 
+<<<<<<< HEAD
   loadOrders(shopId?: string): Observable<OrderFromServer[]> {
     return this.http.get<OrdersListResponse>(`${this.apiUrl}orders`, { withCredentials: true }).pipe(
       map((response) => this.normalizeOrdersList(response)),
@@ -191,6 +211,10 @@ export class OrdersBackService {
 
   canCancel(order: Order) {
     return order.status === 'pending';
+=======
+  canCancel(order: Order) {
+    return order.status !== 'delivered' && order.status !== 'cancelled';
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   }
 
   nextStatus(order: Order): OrderStatus | null {
@@ -199,6 +223,7 @@ export class OrdersBackService {
     return idx >= 0 && idx < STATUS_FLOW.length - 1 ? STATUS_FLOW[idx + 1] : null;
   }
 
+<<<<<<< HEAD
   advance(orderId: string): Observable<Order> {
     const orders = this.ordersSubject.value;
     const order = orders.find(o => o.id === orderId);
@@ -245,10 +270,41 @@ export class OrdersBackService {
         history: shouldAppendHistory
           ? [...order.history, { status: mapped.status, at: nowIso() }]
           : order.history,
+=======
+  advance(orderId: string) {
+    const orders = this.ordersSubject.value;
+    const order = orders.find(o => o.id === orderId);
+    if (!order) return;
+
+    const next = this.nextStatus(order);
+    if (!next) return;
+
+    this.updateStatus(orderId, next);
+  }
+
+  cancel(orderId: string, note = 'Cancelled by owner') {
+    const orders = this.ordersSubject.value;
+    const order = orders.find(o => o.id === orderId);
+    if (!order || !this.canCancel(order)) return;
+
+    this.updateStatus(orderId, 'cancelled', note);
+  }
+
+  private updateStatus(orderId: string, status: OrderStatus, note?: string) {
+    const nextOrders: Order[] = this.ordersSubject.value.map(o => {
+      if (o.id !== orderId) return o;
+
+      const event = { status, at: nowIso(), note };
+      return {
+        ...o,
+        status,
+        history: [...o.history, event],
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       };
     });
 
     this.ordersSubject.next(nextOrders);
+<<<<<<< HEAD
     return nextOrders.find((order) => order.rawId === mapped.rawId) ?? mapped;
   }
 
@@ -316,5 +372,46 @@ export class OrdersBackService {
   private resolveServerId(orderId: string): string {
     const order = this.ordersSubject.value.find((item) => item.id === orderId || item.rawId === orderId);
     return order?.rawId ?? orderId;
+=======
+  }
+
+  private seedOrders(): Order[] {
+    const img = (seed: string) => `https://picsum.photos/seed/${seed}/120/90`;
+
+    const mkTotals = (items: any[]) => {
+      const subtotal = items.reduce((s, it) => s + it.unitPrice * it.qty, 0);
+      const shipping = subtotal > 200 ? 0 : 12;
+      const total = subtotal + shipping;
+      return { subtotal, shipping, total };
+    };
+
+    const o1Items = [
+      { productId: 'p1', name: 'Keyboard', unitPrice: 49, qty: 2, imageUrl: img('keyboard') },
+      { productId: 'p2', name: 'Mouse', unitPrice: 19, qty: 1, imageUrl: img('mouse') },
+    ];
+    const o2Items = [
+      { productId: 'p3', name: 'Screen', unitPrice: 180, qty: 1, imageUrl: img('screen') },
+    ];
+
+    const o1Totals = mkTotals(o1Items);
+    const o2Totals = mkTotals(o2Items);
+
+    const base = (id: string, status: OrderStatus, items: any[], totals: any): Order => ({
+      id,
+      createdAt: nowIso(),
+      status,
+      buyer: { fullName: 'Amine Ben', email: 'amine@mail.com', phone: '+212 6 00 00 00 00' },
+      address: { line1: '12 Rue Hassan II', city: 'Casablanca', zip: '20000', country: 'MA' },
+      items,
+      ...totals,
+      history: [{ status, at: nowIso() }],
+    });
+
+    return [
+      base('ORD-1001', 'PENDING', o1Items, o1Totals),
+      base('ORD-1002', 'confirmed', o2Items, o2Totals),
+      base('ORD-1003', 'preparing', o1Items, o1Totals),
+    ];
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   }
 }

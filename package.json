@@ -33,7 +33,10 @@
     "@angular/router": "^21.1.4",
     "@angular/ssr": "^21.1.2",
     "@ant-design/icons-angular": "^21.0.0",
+<<<<<<< HEAD
     "@netlify/angular-runtime": "^3.0.1",
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     "express": "^5.1.0",
     "ng-zorro-antd": "^21.1.0",
     "rxjs": "~7.8.0",

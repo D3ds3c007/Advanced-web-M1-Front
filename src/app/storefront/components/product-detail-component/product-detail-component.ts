@@ -26,8 +26,11 @@ import { environment } from '../../../../environments/environment';
 export class ProductDetailsComponent {
   readonly pictureUrl = environment.pictureUrl;
   @Input({ required: true }) product!: Product;
+<<<<<<< HEAD
   @Input() isAdding = false;
   @Input() justAdded = false;
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
   @Output() addToCart = new EventEmitter<{ productId: string; quantity: number }>();
 
@@ -72,7 +75,11 @@ export class ProductDetailsComponent {
 
   onAddToCart(): void {
     this.clampQty();
+<<<<<<< HEAD
     if (this.isOutOfStock || this.isAdding) return;
+=======
+    if (this.isOutOfStock) return;
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
     this.addToCart.emit({
       productId: this.product.id,
@@ -114,4 +121,8 @@ export class ProductDetailsComponent {
   }
 
   trackByIndex = (i: number) => i;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

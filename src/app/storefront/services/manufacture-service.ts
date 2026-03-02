@@ -74,7 +74,11 @@ export class ManufactureService {
   // Backward-compatible mock method used by older storefront components.
   getBoutiqueMock(): Observable<Manufacture> {
     return of({
+<<<<<<< HEAD
       nom: 'My Shop',
+=======
+      nom: 'Ma Boutique',
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       categoryName: null,
       description: '',
       logoUrl: this.placeholderImage,

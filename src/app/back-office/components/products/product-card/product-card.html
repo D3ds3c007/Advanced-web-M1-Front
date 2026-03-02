@@ -17,7 +17,11 @@
       (click)="$event.stopPropagation(); edit.emit(product)"
       title="Edit"
     >
+<<<<<<< HEAD
       Edit
+=======
+      ✎
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     </button>
   </div>
 
@@ -29,7 +33,11 @@
     <div class="name">{{ product.name }}</div>
     <div class="price">
       <ng-container *ngIf="product.price === 0; else money">FREE</ng-container>
+<<<<<<< HEAD
       <ng-template #money>{{ product.price | currency:'USD' }}</ng-template>
+=======
+      <ng-template #money>{{ product.price | currency:'EUR' }}</ng-template>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     </div>
   </div>
 

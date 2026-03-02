@@ -13,6 +13,10 @@ export class ComissionsTableComponent {
   @Input() commissions: Commission[] = [];
   @Output() activate = new EventEmitter<string>();
   @Output() deactivateAll = new EventEmitter<void>();
+<<<<<<< HEAD
 
   trackByCommissionId = (_: number, c: Commission) => c._id || c.id;
 }
+=======
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

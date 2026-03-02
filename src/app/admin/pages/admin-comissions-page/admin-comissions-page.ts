@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { Component, OnInit, inject } from '@angular/core';
 
 import { AdminCommissionsBackService, FeeMutationResult } from '../../services/admin-comissions-back';
+=======
+import { Component, inject } from '@angular/core';
+
+import { AdminCommissionsBackService } from '../../services/admin-comissions-back';
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 import { ComissionsTableComponent } from '../../components/comissions/comissions-table/comissions-table';
 import { ComissionDialogComponent } from '../../components/comissions/comission-dialog/comission-dialog';
 
@@ -18,6 +24,7 @@ import { DashboardCardComponent } from '../../../back-office/components/dashboar
     ComissionDialogComponent
   ],
   templateUrl: './admin-comissions-page.html',
+<<<<<<< HEAD
   styles: [`
     .page{padding:18px;background:#f5f6fa;min-height:100vh}
     .title{margin:0 0 14px;font-size:22px;font-weight:900;color:#0f172a}
@@ -40,6 +47,11 @@ import { DashboardCardComponent } from '../../../back-office/components/dashboar
   `],
 })
 export class AdminCommissionsPage implements OnInit {
+=======
+  styleUrls: ['./admin-comissions-page.css'],
+})
+export class AdminCommissionsPage {
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   private service = inject(AdminCommissionsBackService);
   vm$ = this.service.vm$;
 
@@ -48,6 +60,7 @@ export class AdminCommissionsPage implements OnInit {
   openCreate() { this.dialogOpen = true; }
   closeDialog() { this.dialogOpen = false; }
 
+<<<<<<< HEAD
   ngOnInit(): void {
     this.service.loadFees().subscribe({
       error: (err: Error) => this.alertMessage(err.message),
@@ -66,6 +79,14 @@ export class AdminCommissionsPage implements OnInit {
       next: (res: FeeMutationResult) => this.alertMessage(res.message),
       error: (err: Error) => this.alertMessage(err.message),
     });
+=======
+  activate(id: string) {
+    this.service.setActive(id);
+  }
+
+  deactivateAll() {
+    this.service.deactivateAll();
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   }
 
   onSave(e: {
@@ -83,6 +104,7 @@ export class AdminCommissionsPage implements OnInit {
         percentAbove: e.percentAbove,
       },
       activateNow: e.activateNow,
+<<<<<<< HEAD
     }).subscribe({
       next: (res: FeeMutationResult) => {
         this.closeDialog();
@@ -97,3 +119,10 @@ export class AdminCommissionsPage implements OnInit {
     window.alert(message);
   }
 }
+=======
+    });
+
+    this.closeDialog();
+  }
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

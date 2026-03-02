@@ -3,13 +3,22 @@
     <app-product-details
       *ngIf="product; else notFound"
       [product]="product"
+<<<<<<< HEAD
       [isAdding]="addingProductId() === product.id"
       [justAdded]="addedProductId() === product.id"
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       (addToCart)="onAddToCart($event)"
     ></app-product-details>
   </ng-container>
 
   <ng-template #notFound>
+<<<<<<< HEAD
     <p>Product not found.</p>
   </ng-template>
 </app-details-layout>
+=======
+    <p>Produit introuvable.</p>
+  </ng-template>
+</app-details-layout>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { Injectable, inject, PLATFORM_ID, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+=======
+import { Injectable, inject, signal } from '@angular/core';
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 import { toObservable } from '@angular/core/rxjs-interop';
 import {
   catchError,
@@ -24,8 +28,11 @@ import { CartService } from '../services/cart.service';
 
 @Injectable() // <-- IMPORTANT: pas providedIn:'root' (on scope par route)
 export class StorefrontStateService {
+<<<<<<< HEAD
   private readonly platformId = inject(PLATFORM_ID);
   private readonly isBrowser = isPlatformBrowser(this.platformId);
+=======
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   private readonly productService = inject(ProductService);
   private readonly cartService = inject(CartService);
 
@@ -39,6 +46,7 @@ export class StorefrontStateService {
   readonly addingProductId = signal<string | null>(null);
   readonly addedProductId = signal<string | null>(null);
 
+<<<<<<< HEAD
   readonly categories$ = (
     this.isBrowser ? this.productService.getCategories() : of([])
   ).pipe(shareReplay(1));
@@ -70,6 +78,32 @@ export class StorefrontStateService {
         startWith({ items: [], total: 0 })
       )
     : of({ items: [], total: 0 });
+=======
+  readonly categories$ = this.productService.getCategories().pipe(shareReplay(1));
+  readonly topProducts$ = this.productService.getTopProducts().pipe(shareReplay(1));
+
+  private readonly searchResult$ = combineLatest([
+    toObservable(this.query),
+    toObservable(this.pageIndex),
+    toObservable(this.pageSize),
+  ]).pipe(
+    tap(() => {
+      this.loading.set(true);
+      this.error.set(null);
+    }),
+    switchMap(([query, pageIndex, pageSize]) =>
+      this.productService.searchProducts(query, pageIndex, pageSize).pipe(
+        catchError((err) => {
+          console.error('Search error', err);
+          this.error.set('Unable to load products right now.');
+          return of({ items: [], total: 0 });
+        })
+      )
+    ),
+    tap(() => this.loading.set(false)),
+    startWith({ items: [], total: 0 })
+  );
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
   readonly products$ = this.searchResult$.pipe(map((r) => r.items));
   readonly totalItems$ = this.searchResult$.pipe(map((r) => r.total));

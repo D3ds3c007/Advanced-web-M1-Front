@@ -1,14 +1,22 @@
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Item, OrderFromServer, OrderService } from '../../services/order.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { APP_CURRENCY } from '../../../core/constants/app-locale';
+=======
+import { Component } from '@angular/core';
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
 type OrderStatus = 'PAID' | 'PENDING' | 'CANCELLED';
 
 export type OrderItem = {
+<<<<<<< HEAD
   id: string;
+=======
+  id: string;           // id de la ligne (ou productId si tu veux)
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   productId: string;
   name: string;
   imageUrl?: string;
@@ -19,14 +27,26 @@ export type OrderItem = {
 export type Order = {
   id: string;
   orderNumber: string;
+<<<<<<< HEAD
   createdAt: string;
   total: number;
   status: OrderStatus;
+=======
+  createdAt: string; // ISO string
+  total: number;
+  status: OrderStatus;
+
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
   customerName: string;
   phone: string;
   address: string;
   paymentMethod: 'COD' | 'MOBILE_MONEY';
+<<<<<<< HEAD
   items: OrderItem[];
+=======
+
+  items: OrderItem[];  // <-- AJOUT : les articles de la commande
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 };
 
 @Component({
@@ -36,10 +56,16 @@ export type Order = {
   templateUrl: './order.html',
   styleUrls: ['./order.css'],
 })
+<<<<<<< HEAD
 export class OrderComponent implements OnInit, OnDestroy {
   currencyCode = APP_CURRENCY;
   expandedId: string | null = null;
   readonly pictureUrl = environment.pictureUrl;
+=======
+export class OrderComponent {
+  currencyCode = 'EUR';
+  expandedId: string | null = null;
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
   orders: Order[] = [
     {
@@ -76,7 +102,11 @@ export class OrderComponent implements OnInit, OnDestroy {
       orderNumber: 'ORD-20260218-0003',
       createdAt: '2026-02-18T15:10:00.000Z',
       status: 'PAID',
+<<<<<<< HEAD
       customerName: 'Awa Traore',
+=======
+      customerName: 'Awa Traoré',
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
       phone: '+225 07 00 00 00',
       address: 'Abidjan, Cocody',
       paymentMethod: 'MOBILE_MONEY',
@@ -102,6 +132,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     },
   ];
 
+<<<<<<< HEAD
   trackById = (_: number, o: OrderFromServer) => o._id;
   trackByItemId = (_: number, it: Item) => it._id;
 
@@ -128,6 +159,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+=======
+  trackById = (_: number, o: Order) => o.id;
+  trackByItemId = (_: number, it: OrderItem) => it.id;
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 
   toggleDetails(id: string) {
     this.expandedId = this.expandedId === id ? null : id;
@@ -141,6 +176,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     }[status];
   }
 
+<<<<<<< HEAD
   itemLineTotal(it: Item): number {
     return it.priceSnapshot * it.qty;
   }
@@ -149,3 +185,13 @@ export class OrderComponent implements OnInit, OnDestroy {
     return o.items.reduce((sum, it) => sum + this.itemLineTotal(it), 0);
   }
 }
+=======
+  itemLineTotal(it: OrderItem): number {
+    return it.unitPrice * it.quantity;
+  }
+
+  orderSubtotal(o: Order): number {
+    return o.items.reduce((sum, it) => sum + this.itemLineTotal(it), 0);
+  }
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

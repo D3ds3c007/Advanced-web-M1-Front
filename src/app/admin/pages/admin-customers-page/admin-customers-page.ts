@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+=======
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 import { FormsModule } from '@angular/forms';
 import { tap } from 'rxjs';
 
 import { AdminCustomersBackService } from '../../services/admin-customers-back';
 import { AdminCustomersListComponent } from '../../components/admin-customers/admin-customers-list/admin-customers-list';
+<<<<<<< HEAD
+=======
+
+// reuse existing components
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
 import { DashboardCardComponent } from '../../../back-office/components/dashboard/dashboard-card/dashboard-card';
 import { KpiCardComponent } from '../../../back-office/components/dashboard/kpi-card/kpi-card';
 
@@ -21,6 +31,7 @@ import { KpiCardComponent } from '../../../back-office/components/dashboard/kpi-
   templateUrl: './admin-customers-page.html',
   styleUrls: ['./admin-customers-page.css'],
 })
+<<<<<<< HEAD
 export class AdminCustomersPage implements OnInit {
   private readonly service = inject(AdminCustomersBackService);
   private readonly platformId = inject(PLATFORM_ID);
@@ -71,3 +82,26 @@ export class AdminCustomersPage implements OnInit {
     return 'Failed to load users';
   }
 }
+=======
+export class AdminCustomersPage {
+  private service = inject(AdminCustomersBackService);
+
+  vm$ = this.service.vm$.pipe(
+    tap(vm => this.service.ensureSelectedFirst(vm.customers))
+  );
+
+  setSort(v: 'newest' | 'oldest') {
+    this.service.setQuery({ sort: v });
+  }
+
+  setSearch(v: string) {
+    this.service.setQuery({ search: v });
+  }
+
+  select(id: string) { this.service.select(id); }
+  toggleStatus(id: string) { this.service.toggleStatus(id); }
+  remove(id: string) {
+    if (confirm('Delete this customer?')) this.service.delete(id);
+  }
+}
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83

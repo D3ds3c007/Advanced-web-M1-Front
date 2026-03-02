@@ -1,5 +1,9 @@
 <div *ngIf="products.length; else empty" class="list">
+<<<<<<< HEAD
   <div class="row" *ngFor="let p of products; trackBy: trackByProduct">
+=======
+  <div class="row" *ngFor="let p of products">
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
     <div class="bar">
       <div class="fill" [style.width]="width(p)"></div>
       <div class="label">{{ p.name }}</div>
@@ -9,5 +13,10 @@
 </div>
 
 <ng-template #empty>
+<<<<<<< HEAD
   <div class="empty">No products.</div>
 </ng-template>
+=======
+  <div class="empty">Aucun produit.</div>
+</ng-template>
+>>>>>>> c399b0eb74f13d24784e0c47f85572cc2a7cfb83
