@@ -1,4 +1,18 @@
 <app-storefront-layout class="store__content">
+      <section class="storefront__hero">
+        <div class="storefront__heroCopy">
+          <span class="storefront__eyebrow">Procurement storefront</span>
+          <h1>Explore stock with a cleaner dashboard-style buying flow.</h1>
+          <p>Compare products, screen suppliers, and move from discovery to order without the old marketplace clutter.</p>
+        </div>
+
+        <div class="storefront__heroPanel">
+          <span class="storefront__heroLabel">Storefront mode</span>
+          <strong>Curated catalog with operational context</strong>
+          <p>Top picks, full catalog access, and filtering that stays visible while you browse.</p>
+        </div>
+      </section>
+
       <section class="storefront__results">
         @if (state.topProducts$ | async; as topProducts) {
           <app-top-products-section

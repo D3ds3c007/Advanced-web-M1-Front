@@ -1,11 +1,54 @@
 .search-panel {
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
 }
 
 .search-panel__body {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+:host ::ng-deep .search-panel.ant-card {
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(251, 250, 247, 0.96));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+:host ::ng-deep .search-panel .ant-card-head {
+  min-height: 70px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  padding: 0 20px;
+}
+
+:host ::ng-deep .search-panel .ant-card-head-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+:host ::ng-deep .search-panel .ant-card-extra {
+  padding: 0;
+}
+
+:host ::ng-deep .search-panel .ant-card-body {
+  padding: 20px;
+}
+
+:host ::ng-deep .search-panel .ant-btn-link {
+  padding: 0;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+:host ::ng-deep .search-panel .ant-btn-primary {
+  height: 46px;
+  border-radius: 14px;
+  border-color: var(--brand);
+  background: linear-gradient(135deg, #c2410c, #b45309);
+  font-weight: 700;
 }
 
 @media (max-width: 900px) {

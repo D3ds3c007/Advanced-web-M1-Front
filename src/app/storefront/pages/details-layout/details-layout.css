@@ -1,17 +1,39 @@
 :host {
     display: block;
     min-height: 100vh;
-    background: #ffffff;
+    background: transparent;
 }
 
 .app__nav {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 50;
 }
 
 .app__content {
-    max-width: 1200px;
+    max-width: 1360px;
     margin: 0 auto;
-    padding: 18px;
+    padding: 126px 24px 56px;
+    position: relative;
+}
+
+.app__content::before {
+    content: "";
+    position: absolute;
+    inset: 0 24px auto;
+    height: 220px;
+    border-radius: 32px;
+    background:
+      radial-gradient(circle at left top, rgba(180, 83, 9, 0.08), transparent 32%),
+      radial-gradient(circle at right top, rgba(37, 99, 235, 0.08), transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+@media (max-width: 720px) {
+    .app__content {
+      padding: 104px 16px 40px;
+    }
 }

@@ -1,38 +1,42 @@
 .tab-container {
     display: flex;
-    gap: 40px;
+    gap: 12px;
     align-items: center;
-    font-family: Arial, sans-serif;
-    padding: 10px 0;
+    padding: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: var(--shadow);
+    width: fit-content;
 }
 
 .tab-item {
-    font-size: 24px;
+    font-size: 14px;
     font-weight: 700;
-    color: #333;
+    color: #334155;
     cursor: pointer;
-    position: relative; /* Pour positionner la barre orange par rapport à l'item */
-    padding-bottom: 8px;
-    transition: color 0.3s ease;
+    position: relative;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    transition: color 0.3s ease, background 0.3s ease;
+    text-decoration: none;
 }
 
-/* Style quand l'onglet est actif */
 .tab-item.ACTIVE {
-  color: #ff6a00; /* Orange Alibaba */
+  color: #fff;
+  background: linear-gradient(135deg, #c2410c, #b45309);
 }
 
-/* La barre orange sous l'élément actif */
 .tab-item.ACTIVE::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background-color: #ff6a00;
-    border-radius: 2px;
+    display: none;
 }
 
 .tab-item:hover {
-    color: #ff6a00;
+    color: var(--brand);
+    background: #fff7ed;
+}
+
+.separator {
+    color: rgba(100, 116, 139, 0.5);
 }
