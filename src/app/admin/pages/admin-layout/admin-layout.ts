@@ -15,6 +15,6 @@ export class AdminLayout {
     { kind: 'link', label: 'Shop', icon: 'store', route: ['/admin', 'shops'] },
     { kind: 'link', label: 'Categories', icon: 'category', route: ['/admin', 'categories'] },
     { kind: 'link', label: 'Users', icon: 'group', route: ['/admin', 'customers'] },
-    { kind: 'link', label: 'Orders', icon: 'public', route: ['/admin', 'orders'] },
+    { kind: 'link', label: 'Commissions', icon: 'paid', route: ['/admin', 'commissions'] },
   ];
 }

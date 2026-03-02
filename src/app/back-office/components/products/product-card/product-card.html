@@ -1,16 +1,28 @@
-<div class="p-card">
+<div class="p-card" (click)="view.emit(product)">
   <div class="p-card__top">
-    <button class="icon-btn" type="button" (click)="toggle.emit(product)" title="Toggle active">
-      <span class="dot" [class.on]="product.status === 'active'"></span>
+    <button
+      class="icon-btn"
+      type="button"
+      [disabled]="actionsDisabled"
+      (click)="$event.stopPropagation(); toggle.emit(product)"
+      title="Toggle ACTIVE"
+    >
+      <span class="dot" [class.on]="product.status === 'ACTIVE'"></span>
     </button>
 
-    <button class="icon-btn" type="button" (click)="edit.emit(product)" title="Edit">
+    <button
+      class="icon-btn"
+      type="button"
+      [disabled]="actionsDisabled"
+      (click)="$event.stopPropagation(); edit.emit(product)"
+      title="Edit"
+    >
       ✎
     </button>
   </div>
 
   <div class="p-card__img">
-    <img [src]="product.imageUrl" [alt]="product.name" />
+    <img [src]="pictureUrl + product.imageUrl" [alt]="product.name" />
   </div>
 
   <div class="p-card__row">
@@ -22,13 +34,20 @@
   </div>
 
   <div class="p-card__desc">
-    Please add your content here. Keep it short and simple. And smile :)
+    {{ product.description || 'No description' }}
   </div>
 
   <div class="p-card__meta">
     <span class="chip">Stock: {{ product.stock }}</span>
     <span class="chip">Status: {{ product.status }}</span>
 
-    <button class="link" type="button" (click)="remove.emit(product)">delete</button>
+    <button
+      class="link"
+      type="button"
+      [disabled]="actionsDisabled"
+      (click)="$event.stopPropagation(); remove.emit(product)"
+    >
+      delete
+    </button>
   </div>
 </div>

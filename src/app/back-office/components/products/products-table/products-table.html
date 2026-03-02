@@ -12,19 +12,21 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let p of products">
-        <td><img class="thumb" [src]="p.imageUrl" [alt]="p.name" /></td>
+      <tr *ngFor="let p of products; trackBy: trackByProductId" (click)="view.emit(p)">
+        <td><img class="thumb" [src]="pictureUrl + p.imageUrl" [alt]="p.name" /></td>
         <td class="name">{{ p.name }}</td>
         <td class="right">{{ p.price === 0 ? 'FREE' : (p.price | currency:'EUR') }}</td>
         <td class="right">{{ p.stock }}</td>
         <td>
-          <span class="pill" [class.on]="p.status==='active'">{{ p.status }}</span>
+          <span class="pill" [class.on]="p.status==='ACTIVE'">{{ p.status }}</span>
         </td>
         <td class="right actions">
-          <button type="button" (click)="toggle.emit(p)">toggle</button>
-          <button type="button" (click)="edit.emit(p)">edit</button>
-          <button type="button" class="danger" (click)="remove.emit(p)">delete</button>
-        </td>
+          <button type="button" [disabled]="isDisabled(p)" (click)="$event.stopPropagation(); toggle.emit(p)">
+            {{ p.status === 'ACTIVE' ? 'deactivate' : 'activate' }}
+          </button>
+          <button type="button" [disabled]="isDisabled(p)" (click)="$event.stopPropagation(); edit.emit(p)">edit</button>
+          <button type="button" class="danger" [disabled]="isDisabled(p)" (click)="$event.stopPropagation(); remove.emit(p)">delete</button>
+        </td> 
       </tr>
     </tbody>
   </table>
