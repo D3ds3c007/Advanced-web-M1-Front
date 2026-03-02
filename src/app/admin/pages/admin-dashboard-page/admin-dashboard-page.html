@@ -34,23 +34,6 @@
         </div>
 
         <div class="chart-body">
-          <div class="chart-summary" *ngIf="vm.graphState.data as graph">
-            <div>
-              <div class="eyebrow">Filter</div>
-              <div class="summary-value">{{ graph.filter }}</div>
-            </div>
-            <div>
-              <div class="eyebrow">Period</div>
-              <div class="summary-value">
-                {{ graph.year }}<span *ngIf="graph.month"> / {{ graph.month }}</span>
-              </div>
-            </div>
-            <div>
-              <div class="eyebrow">Points</div>
-              <div class="summary-value">{{ graph.points.length }}</div>
-            </div>
-          </div>
-
           <div *ngIf="vm.graphState.loading" class="muted chart-feedback">Loading chart...</div>
           <div *ngIf="vm.graphState.error" class="muted chart-feedback">{{ vm.graphState.error }}</div>
           <app-revenue-chart
