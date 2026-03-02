@@ -10,6 +10,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../services/product.service';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-product-details',
@@ -23,6 +24,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./product-detail-component.css'],
 })
 export class ProductDetailsComponent {
+  readonly pictureUrl = environment.pictureUrl;
   @Input({ required: true }) product!: Product;
 
   @Output() addToCart = new EventEmitter<{ productId: string; quantity: number }>();
@@ -30,7 +32,7 @@ export class ProductDetailsComponent {
   @ViewChild('scroller', { static: false }) scroller?: ElementRef<HTMLElement>;
 
   qty = 1;
-  activeIndex = 0;
+  ACTIVEIndex = 0;
 
   get images(): string[] {
     const imgs = this.product?.images?.length ? this.product.images : [this.product.imageUrl];
@@ -85,19 +87,19 @@ export class ProductDetailsComponent {
     if (!target) return;
 
     target.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    this.activeIndex = index;
+    this.ACTIVEIndex = index;
   }
 
   prev(): void {
     const n = this.images.length;
     if (n <= 1) return;
-    this.scrollTo((this.activeIndex - 1 + n) % n);
+    this.scrollTo((this.ACTIVEIndex - 1 + n) % n);
   }
 
   next(): void {
     const n = this.images.length;
     if (n <= 1) return;
-    this.scrollTo((this.activeIndex + 1) % n);
+    this.scrollTo((this.ACTIVEIndex + 1) % n);
   }
 
   onScrollerScroll(): void {
@@ -106,7 +108,7 @@ export class ProductDetailsComponent {
 
     const w = el.clientWidth || 1;
     const idx = Math.round(el.scrollLeft / w);
-    this.activeIndex = Math.max(0, Math.min(idx, this.images.length - 1));
+    this.ACTIVEIndex = Math.max(0, Math.min(idx, this.images.length - 1));
   }
 
   trackByIndex = (i: number) => i;

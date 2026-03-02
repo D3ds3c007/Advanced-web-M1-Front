@@ -8,9 +8,9 @@ export const ADMIN_ROUTES: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'shops' },
       {
-          path: 'orders',
-          loadComponent: () =>
-          import('./pages/admin-orders-page/admin-orders-page').then(m => m.AdminOrdersPage),
+        path: 'commissions',
+        loadComponent: () =>
+          import('./pages/admin-comissions-page/admin-comissions-page').then(m => m.AdminCommissionsPage),
       },
       {
         path: 'customers',
