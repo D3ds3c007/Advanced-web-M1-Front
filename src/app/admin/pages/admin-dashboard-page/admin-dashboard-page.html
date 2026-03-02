@@ -34,23 +34,6 @@
         </div>
 
         <div class="chart-body">
-          <div class="chart-summary" *ngIf="vm.graphState.data as graph">
-            <div>
-              <div class="eyebrow">Filter</div>
-              <div class="summary-value">{{ graph.filter }}</div>
-            </div>
-            <div>
-              <div class="eyebrow">Period</div>
-              <div class="summary-value">
-                {{ graph.year }}<span *ngIf="graph.month"> / {{ graph.month }}</span>
-              </div>
-            </div>
-            <div>
-              <div class="eyebrow">Points</div>
-              <div class="summary-value">{{ graph.points.length }}</div>
-            </div>
-          </div>
-
           <div *ngIf="vm.graphState.loading" class="muted chart-feedback">Loading chart...</div>
           <div *ngIf="vm.graphState.error" class="muted chart-feedback">{{ vm.graphState.error }}</div>
           <app-revenue-chart
@@ -100,7 +83,7 @@
         </div>
       </app-dashboard-card>
 
-      <app-dashboard-card class="c6 list-card" title="Top Shops">
+      <!-- <app-dashboard-card class="c6 list-card" title="Top Shops">
         <div class="shop-list" *ngIf="dashboard.topShops.length; else emptyTopShops">
           <div *ngFor="let shop of dashboard.topShops; trackBy: trackByShopId" class="shop-row">
             <div class="shop-rank">{{ shop.shopName.charAt(0) }}</div>
@@ -111,7 +94,7 @@
             <div class="shop-value">{{ shop.valueK }}K</div>
           </div>
         </div>
-      </app-dashboard-card>
+      </app-dashboard-card> -->
   </div>
 
   <ng-template #dashboardStateBlock>
