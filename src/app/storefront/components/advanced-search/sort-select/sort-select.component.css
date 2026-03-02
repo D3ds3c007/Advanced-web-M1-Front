@@ -1,21 +1,24 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .field__label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .field__input {
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 14px;
+  min-height: 46px;
   padding: 10px 12px;
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   color: var(--text-strong);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
@@ -25,4 +28,13 @@
   border-color: var(--brand);
   box-shadow: 0 0 0 3px var(--ring);
   background: #ffffff;
+}
+
+:host ::ng-deep .field__input .ant-select-selector {
+  min-height: 46px !important;
+  border: none !important;
+  border-radius: 14px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 8px 14px !important;
 }
