@@ -1,15 +1,15 @@
 <div class="field">
-  <span class="field__label">Categories</span>
-  <div class="field__options">
+  <label class="field__label" for="category-select">Category</label>
+  <nz-select
+    class="field__input"
+    id="category-select"
+    nzAllowClear
+    nzPlaceHolder="All categories"
+    [ngModel]="selectedIds()[0] || null"
+    (ngModelChange)="updateSelection($event)"
+  >
     @for (category of categories(); track category.id) {
-      <label
-        class="field__option"
-        nz-checkbox
-        [ngModel]="selectedIds().includes(category.id)"
-        (ngModelChange)="toggleSelection(category.id, $event)"
-      >
-        {{ category.name }}
-      </label>
+      <nz-option [nzValue]="category.id" [nzLabel]="category.name"></nz-option>
     }
-  </div>
+  </nz-select>
 </div>
