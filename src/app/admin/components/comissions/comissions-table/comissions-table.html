@@ -1,51 +1,78 @@
 <div class="wrap">
-  <table *ngIf="commissions.length; else empty">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Rule</th>
-        <th>Status</th>
-        <th class="right">Action</th>
-      </tr>
-    </thead>
+  <div class="cards" *ngIf="commissions.length; else empty">
+    <article class="commission-card" *ngFor="let c of commissions; trackBy: trackByCommissionId" [class.commission-card--active]="c.active">
+      <div class="commission-card__header">
+        <div>
+          <p class="commission-card__eyebrow">{{ c.active ? 'Live rule' : 'Saved option' }}</p>
+          <h3 class="commission-card__title">{{ c.name }}</h3>
+        </div>
 
-    <tbody>
-      <tr *ngFor="let c of commissions; trackBy: trackByCommissionId">
-        <td class="name">{{ c.name }}</td>
+        <span class="badge" [class.active]="c.active" [class.inactive]="!c.active">
+          {{ c.active ? 'ACTIVE' : 'INACTIVE' }}
+        </span>
+      </div>
 
-        <td class="mono">
-          &lt; {{ c.rule.thresholdEur }} USD -> ${{ c.rule.fixedUnderUsd }}
-          | &gt;= {{ c.rule.thresholdEur }} USD -> {{ c.rule.percentAbove }}%
-        </td>
+      <div class="rule-grid">
+        <div class="rule-tile">
+          <span class="rule-tile__label">Fixed fee under threshold</span>
+          <strong class="rule-tile__value">{{ c.rule.fixedUnderUsd }} USD</strong>
+        </div>
 
-        <td>
-          <span class="badge" [class.active]="c.active" [class.inactive]="!c.active">
-            {{ c.active ? 'ACTIVE' : 'INACTIVE' }}
-          </span>
-        </td>
+        <div class="rule-tile">
+          <span class="rule-tile__label">Threshold switch</span>
+          <strong class="rule-tile__value">{{ c.rule.thresholdEur }} USD</strong>
+        </div>
 
-        <td class="right">
-          <button
-            class="btn"
-            type="button"
-            [disabled]="c.active"
-            (click)="activate.emit(c.id)"
-          >
-            Activate
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <div class="rule-tile">
+          <span class="rule-tile__label">Rate above threshold</span>
+          <strong class="rule-tile__value">{{ c.rule.percentAbove }}%</strong>
+        </div>
+      </div>
+
+      <div class="decision-flow">
+        <div class="decision-flow__step">
+          <span class="decision-flow__tag">1</span>
+          <div>
+            <strong>Below {{ c.rule.thresholdEur }} USD</strong>
+            <p>Apply a flat commission of {{ c.rule.fixedUnderUsd }} USD.</p>
+          </div>
+        </div>
+
+        <div class="decision-flow__step">
+          <span class="decision-flow__tag">2</span>
+          <div>
+            <strong>At or above {{ c.rule.thresholdEur }} USD</strong>
+            <p>Switch to a {{ c.rule.percentAbove }}% percentage fee.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="commission-card__footer">
+        <div class="meta">
+          <span class="meta__label">Created</span>
+          <strong class="meta__value">{{ c.createdAt | date:'mediumDate' }}</strong>
+        </div>
+
+        <button
+          class="btn"
+          type="button"
+          [disabled]="c.active"
+          (click)="activate.emit(c.id)"
+        >
+          {{ c.active ? 'Currently active' : 'Activate rule' }}
+        </button>
+      </div>
+    </article>
+  </div>
 
   <div class="toolbar">
-    <button class="btn ghost" type="button" (click)="deactivateAll.emit()">
-      Deactivate all
-    </button>
-    <div class="note">Delete is not allowed.</div>
+    <div class="note">One commission rule must always remain active. Deletion is disabled to preserve commission history.</div>
   </div>
 
   <ng-template #empty>
-    <div class="empty">No commissions.</div>
+    <div class="empty">
+      <strong>No commissions yet.</strong>
+      <span>Create the first rule to define how platform fees are applied.</span>
+    </div>
   </ng-template>
 </div>

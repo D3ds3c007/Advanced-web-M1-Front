@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 
-import { AdminCommissionsBackService, FeeMutationResult } from '../../services/admin-comissions-back';
+import { AdminCommissionsBackService, Commission, FeeMutationResult } from '../../services/admin-comissions-back';
 import { ComissionsTableComponent } from '../../components/comissions/comissions-table/comissions-table';
 import { ComissionDialogComponent } from '../../components/comissions/comission-dialog/comission-dialog';
 
@@ -18,26 +18,7 @@ import { DashboardCardComponent } from '../../../back-office/components/dashboar
     ComissionDialogComponent
   ],
   templateUrl: './admin-comissions-page.html',
-  styles: [`
-    .page{padding:18px;background:#f5f6fa;min-height:100vh}
-    .title{margin:0 0 14px;font-size:22px;font-weight:900;color:#0f172a}
-
-    .fab{
-      position:fixed;
-      right:28px;
-      bottom:28px;
-      width:64px;
-      height:64px;
-      border-radius:999px;
-      border:none;
-      background:#0b0f19;
-      color:#fff;
-      font-size:34px;
-      line-height:0;
-      cursor:pointer;
-      box-shadow:0 18px 40px rgba(0,0,0,0.25);
-    }
-  `],
+  styleUrl: './admin-comissions-page.css',
 })
 export class AdminCommissionsPage implements OnInit {
   private service = inject(AdminCommissionsBackService);
@@ -47,6 +28,18 @@ export class AdminCommissionsPage implements OnInit {
 
   openCreate() { this.dialogOpen = true; }
   closeDialog() { this.dialogOpen = false; }
+
+  activeCommission = (commissions: Commission[]): Commission | null =>
+    commissions.find((commission) => commission.active) ?? null;
+
+  inactiveCount = (commissions: Commission[]): number =>
+    commissions.filter((commission) => !commission.active).length;
+
+  highestRate = (commissions: Commission[]): number =>
+    commissions.reduce((max, commission) => Math.max(max, commission.rule.percentAbove), 0);
+
+  highestThreshold = (commissions: Commission[]): number =>
+    commissions.reduce((max, commission) => Math.max(max, commission.rule.thresholdEur), 0);
 
   ngOnInit(): void {
     this.service.loadFees().subscribe({

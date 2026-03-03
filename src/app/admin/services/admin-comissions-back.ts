@@ -151,12 +151,7 @@ export class AdminCommissionsBackService {
   }
 
   deactivateAll(): Observable<FeeMutationResult> {
-    const active = this.commissionsSubject.value.find((commission) => commission.active);
-    if (!active) {
-      return of({ message: 'No active commission to deactivate.' });
-    }
-
-    return this.updateFeeStatus(active._id, 'INACTIVE');
+    return of({ message: 'At least one commission rule must remain active.' });
   }
 
   computeCommission(orderTotalEur: number): number {
