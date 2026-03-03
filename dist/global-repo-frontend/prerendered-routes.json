@@ -1,0 +1,19 @@
+{
+  "routes": {
+    "/": {},
+    "/admin": {},
+    "/admin/categories": {},
+    "/admin/commissions": {},
+    "/admin/dashboard": {},
+    "/admin/shops": {},
+    "/admin/users": {},
+    "/auth": {},
+    "/auth/login": {},
+    "/auth/register": {},
+    "/checkout": {},
+    "/forbidden": {},
+    "/history": {},
+    "/manufacturers": {},
+    "/orders": {}
+  }
+}
