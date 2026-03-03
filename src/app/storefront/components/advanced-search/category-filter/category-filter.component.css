@@ -12,26 +12,33 @@
   letter-spacing: 0.08em;
 }
 
-.field__options {
-  display: grid;
-  gap: 10px;
-}
-
-.field__option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 42px;
-  padding: 0 14px;
+.field__input {
+  min-height: 46px;
   border-radius: 14px;
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
   font-size: 14px;
   color: var(--text-strong);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.field__option input {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--brand);
+.field__input:focus-visible {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--ring);
+  background: #ffffff;
+}
+
+:host ::ng-deep .field__input .ant-select-selector {
+  min-height: 46px !important;
+  border: none !important;
+  border-radius: 14px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 8px 14px !important;
+}
+
+:host ::ng-deep .field__input.ant-select-focused {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--ring);
 }
