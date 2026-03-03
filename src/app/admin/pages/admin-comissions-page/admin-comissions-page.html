@@ -1,15 +1,110 @@
 <section class="page" *ngIf="vm$ | async as vm">
-  <h1 class="title">Commissions</h1>
+  <header class="hero">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">Revenue Controls</p>
+      <h1 class="hero__title">Commission orchestration</h1>
+      <p class="hero__subtitle">
+        Manage the platform fee model with a layout that surfaces the live rule, archived alternatives,
+        and the commercial impact thresholds in one view.
+      </p>
+    </div>
 
-  <app-dashboard-card title="All commissions">
-    <app-commissions-table
-      [commissions]="vm.commissions"
-      (activate)="activate($event)"
-      (deactivateAll)="deactivateAll()"
-    ></app-commissions-table>
-  </app-dashboard-card>
+    <div class="hero__actions">
+      <button class="hero__button hero__button--primary" type="button" (click)="openCreate()">
+        New commission rule
+      </button>
+      <div class="hero__policy">One commission rule must remain active at all times.</div>
+    </div>
+  </header>
 
-  <button class="fab" type="button" (click)="openCreate()" title="Create commission">+</button>
+  <section class="stats-grid">
+    <article class="stat-card">
+      <span class="stat-card__label">Total rules</span>
+      <strong class="stat-card__value">{{ vm.commissions.length }}</strong>
+      <span class="stat-card__hint">Available commission configurations</span>
+    </article>
+
+    <article class="stat-card stat-card--accent" *ngIf="activeCommission(vm.commissions) as active; else noActiveRule">
+      <span class="stat-card__label">Live commission</span>
+      <strong class="stat-card__value">{{ active.name }}</strong>
+      <span class="stat-card__hint">{{ active.rule.percentAbove }}% above {{ active.rule.thresholdEur }} USD</span>
+    </article>
+
+    <ng-template #noActiveRule>
+      <article class="stat-card stat-card--warning">
+        <span class="stat-card__label">Live commission</span>
+        <strong class="stat-card__value">None</strong>
+        <span class="stat-card__hint">No rule is currently active</span>
+      </article>
+    </ng-template>
+
+    <article class="stat-card">
+      <span class="stat-card__label">Inactive rules</span>
+      <strong class="stat-card__value">{{ inactiveCount(vm.commissions) }}</strong>
+      <span class="stat-card__hint">Ready to be reactivated when needed</span>
+    </article>
+
+    <article class="stat-card">
+      <span class="stat-card__label">Highest variable rate</span>
+      <strong class="stat-card__value">{{ highestRate(vm.commissions) }}%</strong>
+      <span class="stat-card__hint">Maximum percentage rule across all setups</span>
+    </article>
+  </section>
+
+  <section class="board">
+    <app-dashboard-card class="board__summary" title="Commission model snapshot">
+      <div class="summary-grid">
+        <article class="summary-block" *ngIf="activeCommission(vm.commissions) as active; else inactiveSummary">
+          <span class="summary-block__label">Current rule path</span>
+          <strong class="summary-block__title">{{ active.name }}</strong>
+          <p class="summary-block__text">
+            Orders under {{ active.rule.thresholdEur }} USD apply a fixed {{ active.rule.fixedUnderUsd }} USD fee.
+            Above that threshold, the platform takes {{ active.rule.percentAbove }}%.
+          </p>
+        </article>
+
+        <ng-template #inactiveSummary>
+          <article class="summary-block summary-block--muted">
+            <span class="summary-block__label">Current rule path</span>
+            <strong class="summary-block__title">Activation required</strong>
+            <p class="summary-block__text">
+              Create or activate one commission rule to start applying fees to marketplace transactions.
+            </p>
+          </article>
+        </ng-template>
+
+        <article class="summary-block">
+          <span class="summary-block__label">Threshold ceiling</span>
+          <strong class="summary-block__title">{{ highestThreshold(vm.commissions) }} USD</strong>
+          <p class="summary-block__text">
+            The highest threshold currently configured before switching from fixed fee logic to percentage logic.
+          </p>
+        </article>
+
+        <article class="summary-block">
+          <span class="summary-block__label">Presentation mode</span>
+          <strong class="summary-block__title">Operational library</strong>
+          <p class="summary-block__text">
+            Each rule is displayed as a decision card so activation, comparison, and audit scanning take less effort
+            than in a traditional admin table.
+          </p>
+        </article>
+      </div>
+    </app-dashboard-card>
+
+    <app-dashboard-card class="board__library" title="Commission library">
+      <div card-right class="card-right">
+        <span class="card-right__badge" [class.card-right__badge--inactive]="!vm.activeId">
+          {{ vm.activeId ? '1 rule active' : 'No active rule' }}
+        </span>
+      </div>
+
+      <app-commissions-table
+        [commissions]="vm.commissions"
+        (activate)="activate($event)"
+      ></app-commissions-table>
+    </app-dashboard-card>
+  </section>
 
   <app-commission-dialog
     *ngIf="dialogOpen"
