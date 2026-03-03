@@ -6,7 +6,7 @@
     nzAllowClear
     nzPlaceHolder="All categories"
     [ngModel]="selectedIds()[0] || null"
-    (ngModelChange)="onSelectionChange($event)"
+    (ngModelChange)="updateSelection($event)"
   >
     @for (category of categories(); track category.id) {
       <nz-option [nzValue]="category.id" [nzLabel]="category.name"></nz-option>

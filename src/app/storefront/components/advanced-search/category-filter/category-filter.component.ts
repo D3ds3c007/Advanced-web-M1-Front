@@ -16,7 +16,7 @@ export class CategoryFilterComponent {
   readonly selectedIds = input<string[]>([]);
   readonly selectionChange = output<string[]>();
 
-  onSelectionChange(categoryId: string | null): void {
+  updateSelection(categoryId: string | null): void {
     this.selectionChange.emit(categoryId ? [categoryId] : []);
   }
 }
