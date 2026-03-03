@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, shareReplay, switchMap, take } from 'rxjs/operators';
 
@@ -55,6 +56,7 @@ export class CheckoutComponent {
   private cartService = inject(CartService);
   private productService = inject(ProductService);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
 
   @Output() confirmed = new EventEmitter<CheckoutPayload>();
 
@@ -125,7 +127,7 @@ export class CheckoutComponent {
 
   confirm(lines: CheckoutLine[]) {
     console.log('Confirming order with lines:', lines);
-    if (lines.length === 0) return;
+    if (lines.length === 0 || this.submitting) return;
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -154,21 +156,27 @@ export class CheckoutComponent {
     };
 
     console.log('Prepared payload:', payload);
+    this.submitting = true;
 
-    this.orderService.submitOrder(payload).subscribe({
+    this.orderService.submitOrder(payload).pipe(
+      switchMap((res) =>
+        this.cartService.clear().pipe(
+          map(() => res)
+        )
+      ),
+      take(1)
+    ).subscribe({
       next: (res) => {
         console.log('Order submitted successfully', res);
         this.submitting = false;
         this.confirmed.emit(payload);
+        void this.router.navigate(['/orders']);
       },
       error: (err) => {
         console.error('Error submitting order', err);
         this.submitting = false;
       }
     });
-
-    this.submitting = true;
-    window.location.href = '/orders';
   }
 
   private loadProduct$(id: string): Observable<Product> {
