@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="18" y1="18" x2="46" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#bg)"/>
+  <path d="M18 22.5C18 20.567 19.567 19 21.5 19H42.5C44.433 19 46 20.567 46 22.5V24.5C46 27.538 43.538 30 40.5 30C38.954 30 37.558 29.362 36.56 28.334C35.563 29.362 34.167 30 32.62 30C31.073 30 29.677 29.362 28.68 28.334C27.682 29.362 26.286 30 24.74 30C21.701 30 19.239 27.538 19.239 24.5V22.5H18Z" fill="url(#accent)"/>
+  <path d="M22 31.5H42V43.5C42 45.433 40.433 47 38.5 47H25.5C23.567 47 22 45.433 22 43.5V31.5Z" fill="#EFF6FF" fill-opacity="0.96"/>
+  <path d="M26 40.5C26 39.672 26.672 39 27.5 39H29.5C30.328 39 31 39.672 31 40.5V47H26V40.5Z" fill="#93C5FD"/>
+  <path d="M33 36.5C33 35.672 33.672 35 34.5 35H36.5C37.328 35 38 35.672 38 36.5V47H33V36.5Z" fill="#60A5FA"/>
+  <path d="M24 27.5C25.694 27.5 27.067 26.127 27.067 24.433V22H20.933V24.433C20.933 26.127 22.306 27.5 24 27.5Z" fill="#FBBF24"/>
+  <path d="M32 27.5C33.694 27.5 35.067 26.127 35.067 24.433V22H28.933V24.433C28.933 26.127 30.306 27.5 32 27.5Z" fill="#F59E0B"/>
+  <path d="M40 27.5C41.694 27.5 43.067 26.127 43.067 24.433V22H36.933V24.433C36.933 26.127 38.306 27.5 40 27.5Z" fill="#34D399"/>
+</svg>
