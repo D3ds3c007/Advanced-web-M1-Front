@@ -2,6 +2,12 @@
   display: block;
 }
 
+.storefront__sectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .storefront__hero {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);

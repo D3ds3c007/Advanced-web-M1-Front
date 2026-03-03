@@ -2,17 +2,19 @@
   position: relative;
   min-height: 100vh;
   padding: 128px 0 56px;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(180, 83, 9, 0.12), transparent 32%),
+    radial-gradient(circle at 88% 10%, rgba(37, 99, 235, 0.12), transparent 28%),
+    radial-gradient(circle at 50% 42%, rgba(15, 118, 110, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(238, 234, 223, 0.96), rgba(246, 243, 237, 0.98) 42%, rgba(249, 251, 253, 1) 100%);
 }
 
 .storefront::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: 360px;
+  inset: 0;
   background:
-    radial-gradient(circle at 10% 20%, rgba(180, 83, 9, 0.12), transparent 35%),
-    radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.12), transparent 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06));
   pointer-events: none;
 }
 
