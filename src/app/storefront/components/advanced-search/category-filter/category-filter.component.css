@@ -12,26 +12,6 @@
   letter-spacing: 0.08em;
 }
 
-.field__options {
-  display: grid;
-  gap: 10px;
-}
-
-.field__option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 42px;
-  padding: 0 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  background: rgba(255, 255, 255, 0.68);
-  font-size: 14px;
-  color: var(--text-strong);
-}
-
-.field__option input {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--brand);
+.field__input {
+  width: 100%;
 }
